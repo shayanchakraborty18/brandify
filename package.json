@@ -1,0 +1,31 @@
+{
+  "name": "brandify",
+  "version": "1.0.0",
+  "description": "",
+  "main": "server.js",
+  "scripts": {
+    "start": "node backend/server.js",
+    "dev": "SET NODE_EVE=DEVELOPMENT& nodemon backend/server.js",
+    "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server.js"
+  },
+  "keywords": [],
+  "author": "Shayan",
+  "license": "ISC",
+  "type": "module",
+  "dependencies": {
+    "bcrypt": "^6.0.0",
+    "body-parser": "^2.2.0",
+    "cookie-parser": "^1.4.7",
+    "cors": "^2.8.5",
+    "dotenv": "^17.0.0",
+    "express": "^5.1.0",
+    "jsonwebtoken": "^9.0.2",
+    "mongoose": "^8.16.1",
+    "nodemailer": "^7.0.4",
+    "swagger-ui-express": "^5.0.1",
+    "winston": "^3.17.0"
+  },
+  "devDependencies": {
+    "nodemon": "^3.1.10"
+  }
+}

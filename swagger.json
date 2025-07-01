@@ -1,0 +1,27 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "version": "1.0.0",
+    "description": "API for Ecommerce Store",
+    "title": "Brandify Ecommerce Store - Shayan"
+  },
+  "servers": [
+    {
+      "url": "http://localhost:3000/"
+    }
+  ],
+  "paths": {
+    "/api/test": {
+      "get": {
+        "tags": ["Users"],
+        "summary": "Test",
+        "description": "User API Test",
+        "responses": {
+          "200": {
+            "description": "OK"
+          }
+        }
+      }
+    }
+  }
+}
