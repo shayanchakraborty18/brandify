@@ -77,7 +77,7 @@ export const sendWelcomeEmail = async (user) => {
           src="../../public/images/logo1-32230.png"
           alt="Brandify Logo"
         />
-        <h1>Welcome To Storefleet</h1>
+        <h1>Welcome To Brandify</h1>
       </div>
       <div class="content">
         <p>Hello, ${user.name}</p>
