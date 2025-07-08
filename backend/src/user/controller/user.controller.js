@@ -195,5 +195,15 @@ export const deleteUser = async (req, res, next) => {
 };
 
 export const updateUserProfileAndRole = async (req, res, next) => {
+	try {
+		const updateProfile = await updateUserRoleAndProfileRepo(req.params.id, req.body);
 
+		if(!updateProfile) {
+			return res.status(400).json({success:false, msg: "no user profile updated with provided id"});
+		}
+
+		res.status(200).json({success:true, msg: "user profile updated successfully", updateProfile});
+	} catch(error) {
+		return next(new ErrorHandler(400, error));
+	}
 };
