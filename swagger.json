@@ -3,7 +3,7 @@
   "info": {
     "version": "1.0.0",
     "description": "API for Ecommerce Store",
-    "title": "Brandify Ecommerce Store - Shayan"
+    "title": "Brandify Ecommerce Store - Made by Shayan"
   },
   "servers": [
     {
@@ -13,12 +13,41 @@
       "url": "https://brandify-8mm5.onrender.com/"
     }
   ],
+  "components": {
+    "securitySchemes": {
+      "JWT": {
+        "in": "header",
+        "name": "Authorization",
+        "type": "apiKey"
+      }
+    }
+  },
   "paths": {
-    "/api/test": {
+    "/api/brandify/user/signup": {
       "get": {
         "tags": ["Users"],
-        "summary": "Test",
-        "description": "User API Test",
+        "summary": "Signup",
+        "description": "User APIs",
+        "requestBody": {
+          "content": {
+            "multipart/form-data": {
+              "schema": {
+                "type": "object",
+                "properties": {
+                  "name": {
+                    "type": "string"
+                  },
+                  "email": {
+                    "type": "string"
+                  },
+                  "password": {
+                    "type": "string"
+                  }
+                }
+              }
+            }
+          }
+        },
         "responses": {
           "200": {
             "description": "OK"

@@ -8,11 +8,12 @@ import {
 	errorHandlerMiddleware,
 	handleUncaughtError,
 } from "./middlewares/errorHandlerMiddleware.js";
-import userRoutes from "./src/user/routes/user.routes.js";
 import cookieParser from "cookie-parser";
 import { fileURLToPath } from "url";
 import apiDocs from '../swagger.json' with {type: 'json'}
-import swagger from "swagger-ui-express"; // swagger docs
+import swagger from "swagger-ui-express";
+import productRoutes from "./src/product/routes/product.routes.js";
+import userRoutes from "./src/user/routes/user.routes.js";
 
 const server = express();
 
@@ -38,6 +39,7 @@ if(process.env.NODE_ENV === 'PRODUCTION') {
 }
 // configure routes
 server.use("/api/brandify/user", userRoutes);
+server.use("/api/brandify/product", productRoutes);
 
 // errorHandlerMiddleware
 server.use(errorHandlerMiddleware);

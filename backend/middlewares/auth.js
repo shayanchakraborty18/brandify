@@ -3,7 +3,7 @@ import { ErrorHandler } from "../utils/errorHandler.js";
 import UserModel from "../src/user/models/user.schema.js";
 
 export const auth = async (req, res, next) => {
-	console.log(req.cookies);
+	// console.log(req.cookies);
 	const { token } = req.cookies;
 	if (!token) {
 		return next(new ErrorHandler(401, "login to access this route!"));
