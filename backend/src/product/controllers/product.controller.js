@@ -4,7 +4,8 @@
 import { ErrorHandler } from "../../../utils/errorHandler.js";
 import {
 	addNewProductRepo,
-	deleteProductRepo,
+	deleteProductRepo, findBestSellerProductsRepo,
+	findProductFeaturedRepo,
 	findProductRepo,
 	getAllProductsRepo,
 	getProductDetailsRepo,
@@ -216,5 +217,23 @@ export const deleteReview = async (req, res, next) => {
 		});
 	} catch (error) {
 		return next(new ErrorHandler(500, error));
+	}
+};
+
+export const getFeaturedProducts = async (req, res, next) => {
+	try {
+		const products = await findProductFeaturedRepo(req.query.limit);
+		res.status(200).json({success: true, products});
+	} catch (error) {
+		return next(new ErrorHandler(400, error));
+	}
+};
+
+export const getBestSellerProducts = async (req, res, next) => {
+	try {
+		const products = await findBestSellerProductsRepo(req.query.limit);
+		res.status(200).json({success: true, products});
+	} catch (error) {
+		return next(new ErrorHandler(400, error));
 	}
 };

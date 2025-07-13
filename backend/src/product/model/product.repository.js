@@ -37,3 +37,11 @@ export const getTotalCountsOfProduct = async () => {
 export const findProductRepo = async (productId) => {
 	return await ProductModel.findById(productId);
 };
+
+export const findProductFeaturedRepo = async (limit = 10) => {
+	return await ProductModel.find({isFeatured: true}).limit(limit);
+};
+
+export const findBestSellerProductsRepo = async (limit = 10) => {
+	return await ProductModel.find().sort({sold: -1}).limit(limit)
+};

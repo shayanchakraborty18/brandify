@@ -8,6 +8,7 @@ import {
 	getProductDetails,
 	rateProduct,
 	updateProduct,
+	getFeaturedProducts, getBestSellerProducts
 } from "../controllers/product.controller.js";
 import { auth, authByUserRole } from "../../../middlewares/auth.js";
 
@@ -17,6 +18,9 @@ const router = express.Router();
 router.route("/products").get(getAllProducts);
 router.route("/details/:id").get(getProductDetails);
 router.route("/reviews/:id").get(getAllReviewsOfAProduct);
+
+router.route("/featured").get(getFeaturedProducts);
+router.route("/best-seller").get(getBestSellerProducts);
 
 // POST Routes
 // admin-only
