@@ -19,7 +19,7 @@ import orderRoutes from "./src/order/routes/order.routes.js";
 const server = express();
 
 server.use(cors({
-	origin: "https://brandify-8mm5.onrender.com", // your frontend URL
+	origin: ["https://brandify-8mm5.onrender.com", "http://localhost:5173"],
 	credentials: true
 }));
 server.use(express.json()); // to accept json
