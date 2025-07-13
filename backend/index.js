@@ -16,6 +16,7 @@ import productRoutes from "./src/product/routes/product.routes.js";
 import userRoutes from "./src/user/routes/user.routes.js";
 import orderRoutes from "./src/order/routes/order.routes.js";
 
+
 const server = express();
 
 server.use(cors({
@@ -40,6 +41,8 @@ server.use("/api/brandify/order", orderRoutes);
 
 // errorHandlerMiddleware
 server.use(errorHandlerMiddleware);
+
+server.use("/static", express.static(path.join(process.cwd(), 'backend/public')));
 
 if(process.env.NODE_ENV === 'PRODUCTION') {
 	const __filename = fileURLToPath(import.meta.url);

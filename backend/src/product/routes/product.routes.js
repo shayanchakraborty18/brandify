@@ -11,6 +11,7 @@ import {
 	getFeaturedProducts, getBestSellerProducts
 } from "../controllers/product.controller.js";
 import { auth, authByUserRole } from "../../../middlewares/auth.js";
+import {uploadB} from "../../../middlewares/file-upload.middlware.js";
 
 const router = express.Router();
 
@@ -24,8 +25,8 @@ router.route("/best-seller").get(getBestSellerProducts);
 
 // POST Routes
 // admin-only
-router.route("/add").post(auth, authByUserRole("admin"), addNewProduct);
-router.route("/update/:id").put(auth, authByUserRole("admin"), updateProduct);
+router.route("/add").post(auth, authByUserRole("admin"), uploadB.array('images', 5) ,addNewProduct);
+router.route("/update/:id").put(auth, authByUserRole("admin"),uploadB.array('images', 5) ,updateProduct);
 
 // DELETE ROUTE
 // Admin only

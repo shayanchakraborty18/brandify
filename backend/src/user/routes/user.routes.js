@@ -17,6 +17,7 @@ import {
 	userLogin,
 } from "../controller/user.controller.js";
 import { auth, authByUserRole } from "../../../middlewares/auth.js";
+import {uploadA} from "../../../middlewares/file-upload.middlware.js";
 
 const router = express.Router();
 
@@ -28,7 +29,7 @@ router.route("/password/forget").post(forgetPassword);
 // User PUT Routes
 router.route("/password/reset/:token").put(resetUserPassword);
 router.route("/password/update").put(auth, updatePassword);
-router.route("/profile/update").put(auth, updateUserProfile);
+router.route("/profile/update").put(auth, uploadA.single('avatar'), updateUserProfile);
 
 // User GET Routes
 router.route("/details").get(auth, getUserDetails);

@@ -16,8 +16,19 @@ import ProductModel from "../model/product.schema.js";
 
 export const addNewProduct = async (req, res, next) => {
 	try {
+		let insertData;
+		if (!req.files.length) {
+			insertData = req.body;
+		} else {
+			const fileInfo = req.files.map(file => ({
+				public_id: file.publicId,
+				url: `static/uploads/product/${file.filename}`
+			}));
+			insertData = {...req.body, images: fileInfo};
+		}
+
 		const product = await addNewProductRepo({
-			...req.body,
+			...insertData,
 			createdBy: req.user._id,
 		});
 		if (product) {
@@ -89,7 +100,18 @@ export const getAllProducts = async (req, res, next) => {
 
 export const updateProduct = async (req, res, next) => {
 	try {
-		const updatedProduct = await updateProductRepo(req.params.id, req.body);
+		let updatedData;
+		if (!req.files.length) {
+			updatedData = req.body;
+		} else {
+			const fileInfo = req.files.map(file => ({
+				public_id: file.publicId,
+				url: `static/uploads/product/${file.filename}`
+			}));
+			updatedData = {...req.body, images: fileInfo};
+		}
+
+		const updatedProduct = await updateProductRepo(req.params.id, updatedData);
 		if (updatedProduct) {
 			res.status(200).json({ success: true, updatedProduct });
 		} else {
