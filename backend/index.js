@@ -18,7 +18,10 @@ import orderRoutes from "./src/order/routes/order.routes.js";
 
 const server = express();
 
-server.use(cors());
+server.use(cors({
+	origin: "https://brandify-8mm5.onrender.com", // your frontend URL
+	credentials: true
+}));
 server.use(express.json()); // to accept json
 server.use(cookieParser());
 
