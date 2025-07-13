@@ -3,10 +3,17 @@ import api from '../api/axios'
 // import { useDispatch } from 'react-redux';
 import { Link, useNavigate } from "react-router-dom";
 // import { login } from '../features/auth/authSlice'; // action from authSlice
+import { useAuth } from '../context/AuthContext';
 
 export default function Login() {
   // const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { fetchUser } = useAuth();
+
+  // Check auth on initial load
+  // useEffect(() => {
+    // fetchUser();
+  // }, []);
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState({});
@@ -54,10 +61,12 @@ export default function Login() {
 
       if (response.status === 200) {
         // Store token for authenticated requests later
-        localStorage.setItem("token", response.data.token);
+        // localStorage.setItem("token", response.data.token);
 
         navigate("/account");
         alert("Login successful");
+        await fetchUser();
+        console.log(response.data)
       }
     } catch (err) {
       console.error(

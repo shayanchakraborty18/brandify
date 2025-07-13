@@ -9,21 +9,23 @@ export const AuthContextProvider = ({ children }) => {
   const [loading, setLoading] = useState(true);
 
   // Check auth on initial load
-  useEffect(() => {
+  // useEffect(() => {
     const fetchUser = async () => {
       try {
         const res = await api.get("/user/details");
-        console.log("Login successful:");
+        console.log("User fetched:", res.data);
+
         setUser(res.data);
       } catch (err) {
         setUser(null);
+        console.error("User fetch failed:", err.response?.data || err.message);
       } finally {
         setLoading(false);
       }
     };
 
-    fetchUser();
-  }, []);
+    // fetchUser();
+  // }, []);
 
   // Logout function
   const logout = async () => {
@@ -37,7 +39,7 @@ export const AuthContextProvider = ({ children }) => {
   };
 
   return (
-    <AuthContext.Provider value={{ user, setUser, loading, logout }}>
+    <AuthContext.Provider value={{ user, setUser, loading, logout, fetchUser }}>
       {children}
     </AuthContext.Provider>
   );

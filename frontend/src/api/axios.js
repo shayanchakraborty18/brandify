@@ -1,12 +1,9 @@
 // src/api/axios.js
-import axios from "axios";
+import axios from 'axios';
 
 const api = axios.create({
-  baseURL: "https://brandify-8mm5.onrender.com/api/brandify", // 🔁 your backend base URL
-  // withCredentials: true,           // 🔐 include cookies in all requests
-  headers: {
-    "Content-Type": "application/json",
-  },
+  baseURL: 'https://brandify-8mm5.onrender.com/api/brandify',
+  withCredentials: true, // important for sending cookies
 });
 
 export default api;
