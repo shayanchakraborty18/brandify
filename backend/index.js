@@ -29,6 +29,15 @@ server.get("/api/test", (req, res) => {
 	res.send("hello")
 });
 
+// configure routes
+server.use("/api/brandify/user", userRoutes);
+server.use("/api/brandify/product", productRoutes);
+server.use("/api/brandify/order", orderRoutes);
+
+
+// errorHandlerMiddleware
+server.use(errorHandlerMiddleware);
+
 if(process.env.NODE_ENV === 'PRODUCTION') {
 	const __filename = fileURLToPath(import.meta.url);
 	const __dirname = path.dirname(__filename);
@@ -38,13 +47,5 @@ if(process.env.NODE_ENV === 'PRODUCTION') {
 		res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 	})
 }
-// configure routes
-server.use("/api/brandify/user", userRoutes);
-server.use("/api/brandify/product", productRoutes);
-server.use("/api/brandify/order", orderRoutes);
-
-
-// errorHandlerMiddleware
-server.use(errorHandlerMiddleware);
 
 export default server;
