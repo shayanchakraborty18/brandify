@@ -1,5 +1,5 @@
 import { Outlet } from "react-router-dom";
-import { AccountSidebar } from "../components/AccountSidebar";
+import { AccountSidebar } from "../components/common/AccountSidebar";
 
 export default function DashboardLayout() {
   return (

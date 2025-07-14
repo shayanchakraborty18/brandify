@@ -1,44 +1,42 @@
+// src/App.jsx
+
 import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import SiteLayout from "./layouts/SiteLayout";
 import AuthLayout from "./layouts/AuthLayout";
 import DashboardLayout from "./layouts/DashboardLayout";
-import SiteLayout from "./layouts/SiteLayout";
-import Home from "./pages/Home";
-import Products from "./pages/Products";
-import ProductDetail from "./pages/ProductDetails";
-import Login from "./pages/Login";
-import Register from "./pages/Register";
-import Dashboard from "./pages/account/Dashboard";
-import OrderHistory from "./pages/account/OrderHistory";
-import PrivateRoute from "./routes/PrivateRoute";
+import ProtectedRoute from "./routes/ProtectedRoute";
+import { publicRoutes, authRoutes, privateRoutes } from "./routes/routes";
 
 export default function App() {
   return (
     <Router>
       <Routes>
-        {/* All pages using SiteLayout */}
+        {/* Public site pages */}
         <Route element={<SiteLayout />}>
-          <Route path="/" element={<Home />} />
-          <Route path="/products" element={<Products />} />
-          <Route path="/product/:id" element={<ProductDetail />} />
+          {publicRoutes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
 
           {/* Protected account section */}
           <Route
             path="/account"
             element={
-              <PrivateRoute>
+              <ProtectedRoute>
                 <DashboardLayout />
-              </PrivateRoute>
+              </ProtectedRoute>
             }
           >
-            <Route index element={<Dashboard />} />
-            <Route path="orders" element={<OrderHistory />} />
+            {privateRoutes.map(({ path, element }) => (
+              <Route key={path || "index"} index={!path} path={path} element={element} />
+            ))}
           </Route>
         </Route>
 
-        {/* Auth pages using AuthLayout */}
+        {/* Auth pages */}
         <Route element={<AuthLayout />}>
-          <Route path="/login" element={<Login />} />
-          <Route path="/register" element={<Register />} />
+          {authRoutes.map(({ path, element }) => (
+            <Route key={path} path={path} element={element} />
+          ))}
         </Route>
       </Routes>
     </Router>
