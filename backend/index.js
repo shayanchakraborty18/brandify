@@ -39,7 +39,7 @@ server.use("/api/brandify/product", productRoutes);
 server.use("/api/brandify/order", orderRoutes);
 
 
-// errorHandlerMiddleware
+// errorHandlerMiddleware 
 server.use(errorHandlerMiddleware);
 
 server.use("/static", express.static(path.join(process.cwd(), 'backend/public')));
