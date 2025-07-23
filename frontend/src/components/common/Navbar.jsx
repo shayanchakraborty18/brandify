@@ -22,13 +22,7 @@ export default function Navbar() {
           <div>
             <ul className="flex items-center gap-4 uppercase">
               <li>
-                <Link to="/mens">Mens</Link>
-              </li>
-              <li>
-                <Link to="/womens">Womens</Link>
-              </li>
-              <li>
-                <Link to="/kids">Kids</Link>
+                <Link to="products/mobile">Mobile</Link>
               </li>
             </ul>
           </div>

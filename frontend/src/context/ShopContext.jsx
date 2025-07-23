@@ -1,12 +1,27 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
-import { getAllProducts, getBestSeller } from "../services/productService";
+import { getAllProducts, getBestSeller, getfeaturedProduct, getProductById, getProductCategory } from "../services/productService";
 
 const ShopContext = createContext();
 
 export const ShopContextProvider = ({ children }) => {
   const [products, setProducts] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
+
   const [loading, setLoading] = useState(false);
+
+
+  const bestSellerProducts = async () => {
+    setLoading(true);
+    try {
+      const res = await getBestSeller();
+      setBestSelling(res.data.products);
+    //   console.log(res.data.products.data)
+    } catch (err) {
+      console.error("Error fetching products:", err);
+    } finally {
+      setLoading(false);
+    }
+  };
 
   const fetchAllProducts = async () => {
     setLoading(true);
@@ -21,26 +36,37 @@ export const ShopContextProvider = ({ children }) => {
     }
   };
 
-  const bestSellerProducts = async () => {
-    setLoading(true);
-    try {
-      const res = await getBestSeller();
-      setBestSelling(res.data.products.data);
-    //   console.log(res.data.products.data)
-    } catch (err) {
-      console.error("Error fetching products:", err);
-    } finally {
-      setLoading(false);
-    }
-  };
+const getProductDetail = async (id) => {
+  try {
+    const res = await getProductById(id);
+    if (!res.data.productDetails) throw new Error("Product not found");
+    return res.data.productDetails; 
+  } catch (error) {
+    console.error("Error getting product:", error);
+    return null;
+  }
+};
+
+const getCategory = async (catname) => {
+  try{
+    const res = await getProductCategory(catname);
+    return res.data.products.data;
+  }catch(err){
+    console.error("Error getting category:", err)
+    return null
+  }
+}
+
+
+
 
   useEffect(() => {
-    fetchAllProducts();
     bestSellerProducts();
+    fetchAllProducts();
   }, []);
 
   return (
-    <ShopContext.Provider value={{ products, loading, bestSelling }}>
+    <ShopContext.Provider value={{ products, loading, bestSelling, getProductDetail, getCategory }}>
       {children}
     </ShopContext.Provider>
   );

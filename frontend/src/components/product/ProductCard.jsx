@@ -3,16 +3,21 @@ import { Link } from "react-router-dom";
 import { AddToCart } from "./AddToCart";
 
 export const ProductCard = ({ product }) => {
+  // console.log(product.images?.[0]?.url)
+  // console.log(product.images[0])
+console.log(product)
+  
 
   // const {id, name, new_price, old_price, image} = product
   return (
     <div className="productCard rounded-md shadow-md p-4">
-      <Link to={`/product/${product.id}`}>
+      <Link to={`/product/${product._id}`}>
         <div className="flex justify-center">
-          <img onClick={() => window.scrollTo(0, 0)} src={product.image} alt="" />
+          <img onClick={() => window.scrollTo(0, 0)} src={`http://localhost:3000/${product.images?.[0]?.url}`}  alt="" />
         </div>
+        <h4 className="text-text font-medium my-2">{product.name}</h4>
       </Link>
-      <h4 className="text-text font-medium my-2">{product.name}</h4>
+      
       <div className="flex justify-center gap-2">
         <p className="text-primary font-bold">${product.price}</p>
         {/* <p className="line-through text-text/50">${product.old_price}</p> */}

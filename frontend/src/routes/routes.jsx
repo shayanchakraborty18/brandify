@@ -6,10 +6,11 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/account/Dashboard";
 import OrderHistory from "../pages/account/OrderHistory";
 
+
 // Exporting route config as arrays
 export const publicRoutes = [
   { path: "/", element: <Home /> },
-  { path: "/products", element: <Products /> },
+  {path: "/products/:catname", element: <Products/>},
   { path: "/product/:id", element: <ProductDetail /> },
 ];
 

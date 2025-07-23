@@ -1,18 +1,29 @@
-import React from "react";
-import { ProductItem } from "../productitem/ProductItem";
+import React, { useEffect, useState } from "react";
+import { useShop } from "../../context/ShopContext";
+import { ProductGrid } from "./ProductGrid";
 
-export const Relatedproducts = ({ relatedProducts }) => {
+export const Relatedproducts = ({ currentProduct }) => {
+  const productCat = currentProduct.category;
+  const currentproductid = currentProduct._id;
+  const [products, setProducts] = useState([]);
+  const { getCategory } = useShop();
+
+  useEffect(() => {
+    const getRelProducts = async () => {
+      const matchdata = await getCategory(productCat);
+      const firstfour = matchdata.filter((item)=> item._id !== currentproductid).slice(0, 4)
+      setProducts(firstfour);
+    };
+    getRelProducts();
+  }, [currentProduct]);
+
+  console.log(products)
+
   return (
-    <div className="container mx-auto px-4 section-gap">
-      <div className="text-center">
-        <h2 className="text-2xl font-semibold uppercase">Related Products</h2>
-        <div className="mt-2 w-20 h-1 bg-primary mx-auto rounded"></div>
-      </div>
-      <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-        {relatedProducts.map((product) => (
-          <ProductItem key={product.id} product={product} />
-        ))}
-      </div>
-    </div>
+    
+        
+          <ProductGrid productlList={products} gridTitle={'You May Alos Like'} />
+        
+    
   );
 };
