@@ -10,21 +10,21 @@ export const AuthContextProvider = ({ children }) => {
 
   // Check auth on initial load
   // useEffect(() => {
-    const fetchUser = async () => {
-      try {
-        const res = await api.get("/user/details");
-        console.log("User fetched:", res.data);
+  const fetchUser = async () => {
+    try {
+      const res = await api.get("/user/details");
+      console.log("User fetched:", res.data);
 
-        setUser(res.data);
-      } catch (err) {
-        setUser(null);
-        console.error("User fetch failed:", err.response?.data || err.message);
-      } finally {
-        setLoading(false);
-      }
-    };
+      setUser(res.data);
+    } catch (err) {
+      setUser(null);
+      console.error("User fetch failed:", err.response?.data || err.message);
+    } finally {
+      setLoading(false);
+    }
+  };
 
-    // fetchUser();
+  // fetchUser();
   // }, []);
 
   // Logout function

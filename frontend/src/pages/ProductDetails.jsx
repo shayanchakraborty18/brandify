@@ -45,7 +45,7 @@ export default function ProductDetail() {
 
   return (
     <>
-      <Breadcrumb />
+      <Breadcrumb product={product} />
 
       <div className="product-page -mt-4">
         <div className="container mx-auto px-4 section-gap">

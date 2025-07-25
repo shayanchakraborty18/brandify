@@ -5,7 +5,7 @@ import { AddToCart } from "./AddToCart";
 export const ProductCard = ({ product }) => {
   // console.log(product.images?.[0]?.url)
   // console.log(product.images[0])
-console.log(product)
+// console.log(product)
   
 
   // const {id, name, new_price, old_price, image} = product

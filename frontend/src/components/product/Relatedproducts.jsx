@@ -17,7 +17,7 @@ export const Relatedproducts = ({ currentProduct }) => {
     getRelProducts();
   }, [currentProduct]);
 
-  console.log(products)
+  // console.log(products)
 
   return (
     

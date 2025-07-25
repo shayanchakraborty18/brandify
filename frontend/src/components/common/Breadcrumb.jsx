@@ -23,8 +23,8 @@ export const Breadcrumb = ({ product }) => {
                 alt="Cart"
                 className="w-4 h-4 opacity-50"
               />
-              <Link to={`/${product?.category}s`} className=" capitalize">
-                {product?.category}s
+              <Link to={`/products/${product?.category.toLowerCase()}`} className=" capitalize">
+                {product?.category}
               </Link>
             </div>
           </li>
@@ -35,13 +35,16 @@ export const Breadcrumb = ({ product }) => {
                 alt="Cart"
                 className="w-4 h-4 opacity-50"
               />
-              <Link
+              {/* <Link
                 to={`/product/${product?.id}`}
                 aria-current="page"
                 className="capitalize"
-              >
-                {product?.name}
-              </Link>
+              > */}
+              <span className="font-bold">
+{product?.name}
+              </span>
+                
+              {/* </Link> */}
             </div>
           </li>
         </ol>
