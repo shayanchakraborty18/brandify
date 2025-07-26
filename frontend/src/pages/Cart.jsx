@@ -1,6 +1,6 @@
 import React from "react";
 import { useCart } from "../context/CartContext";
-import { StartRating } from "../components/common/StartRating";
+import { StarRating } from "../components/common/StarRating";
 import { Link } from "react-router-dom";
 
 export default function Cart() {
@@ -43,7 +43,7 @@ export default function Cart() {
                       <h2 className="text-lg font-semibold text-gray-800">
                         {item.name}
                       </h2>
-                      <StartRating rating={item.rating} />
+                      <StarRating rating={item.rating} />
                       <p className="text-sm text-gray-500 font-semibold">
                         ${item.price} x {item.quantity}
                       </p>

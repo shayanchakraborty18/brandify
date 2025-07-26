@@ -11,7 +11,9 @@ export const Relatedproducts = ({ currentProduct }) => {
   useEffect(() => {
     const getRelProducts = async () => {
       const matchdata = await getCategory(productCat);
-      const firstfour = matchdata.filter((item)=> item._id !== currentproductid).slice(0, 4)
+      const firstfour = matchdata
+        .filter((item) => item._id !== currentproductid)
+        .slice(0, 4);
       setProducts(firstfour);
     };
     getRelProducts();
@@ -20,10 +22,6 @@ export const Relatedproducts = ({ currentProduct }) => {
   // console.log(products)
 
   return (
-    
-        
-          <ProductGrid productlList={products} gridTitle={'You May Alos Like'} />
-        
-    
+    <ProductGrid productlList={products} gridTitle={"You May Alos Like"} />
   );
 };
