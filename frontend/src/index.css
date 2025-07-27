@@ -48,7 +48,7 @@ h1 {
 }
 
 .btn {
-  @apply border border-transparent rounded-md px-6 py-2 text-background bg-primary font-medium transition-all duration-300 hover:bg-background hover:text-primary hover:border-primary;
+  @apply border border-transparent rounded-md px-3 py-2 text-background bg-primary font-medium transition-all duration-300 hover:bg-background hover:text-primary hover:border-primary;
 }
 .btn-primary{
   @apply text-primary bg-background border-primary hover:text-background hover:bg-primary;

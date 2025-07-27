@@ -94,7 +94,7 @@ export default function Navbar() {
               <ul className="flex items-center justify-center gap-[1px] uppercase text-sm min-w-max">
                 <li>
                   <Link
-                    className="py-2 px-4 flex bg-background/50 gap-2 items-center"
+                    className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
                     to="products/mobile"
                   >
                     <FaMobileAlt /> Mobile
@@ -102,7 +102,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    className="py-2 px-4 flex bg-background/50 gap-2 items-center"
+                    className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
                     to="products/mobile"
                   >
                     <FaHeadphones /> Headphone
@@ -110,7 +110,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    className="py-2 px-4 flex bg-background/50 gap-2 items-center"
+                    className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
                     to="products/mobile"
                   >
                     <FaTabletAlt /> Tablet
@@ -118,7 +118,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    className="py-2 px-4 flex bg-background/50 gap-2 items-center"
+                    className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
                     to="products/mobile"
                   >
                     <FaLaptop /> Laptop
@@ -126,7 +126,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    className="py-2 px-4 flex bg-background/50 gap-2 items-center"
+                    className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
                     to="products/mobile"
                   >
                     <BsSmartwatch /> Wearable
@@ -134,7 +134,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    className="py-2 px-4 flex bg-background/50 gap-2 items-center"
+                    className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
                     to="products/mobile"
                   >
                     <FaCamera /> Camera
@@ -142,7 +142,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    className="py-2 px-4 flex bg-background/50 gap-2 items-center"
+                    className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
                     to="products/mobile"
                   >
                     <FaTv /> Television
@@ -150,7 +150,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    className="py-2 px-4 flex bg-background/50 gap-2 items-center"
+                    className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
                     to="products/mobile"
                   >
                     <BsSpeaker /> Speaker
@@ -158,7 +158,7 @@ export default function Navbar() {
                 </li>
                 <li>
                   <Link
-                    className="py-2 px-4 flex bg-background/50 gap-2 items-center"
+                    className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
                     to="products/mobile"
                   >
                     <FaMouse /> Accessories
@@ -170,7 +170,7 @@ export default function Navbar() {
           </div>
         </div>
       )}
-      <div className="bg-primary/20">
+      <div className="bg-primary/40 absolute left-0 right-0 z-20">
         <div className="container mx-auto px-4">
           <div className="overflow-x-auto">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">

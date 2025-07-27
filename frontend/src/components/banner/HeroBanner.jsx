@@ -1,6 +1,7 @@
 import React from 'react'
 import { Link } from 'react-router-dom'
-import heroImage from '../../assets/images/vivo-banner.jpg'
+import heroImage from '../../assets/images/iphone-16_overview.png'
+import iphone16Banner from '../../assets/images/iphone16_banner.jpg.png'
 
 
 export const HeroBanner = () => {
@@ -25,7 +26,7 @@ export const HeroBanner = () => {
         </div>
       </div> */}
 
-      <img src={heroImage} className='w-full' alt="banner" />
+      <img src={iphone16Banner} className='w-full' alt="banner" />
     </div>
   )
 }
