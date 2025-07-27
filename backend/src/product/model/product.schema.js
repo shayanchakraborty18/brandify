@@ -8,6 +8,7 @@ const productSchema = new mongoose.Schema(
 			required: [true, "product name is required"],
 			trim: true,
 		},
+		shortDescription: { type: String },
 		description: {
 			type: String,
 			required: [true, "product description name is required"],
@@ -16,6 +17,7 @@ const productSchema = new mongoose.Schema(
 				"product description should be atleat 10 characters long",
 			],
 		},
+		features: { type: String },
 		price: {
 			type: Number,
 			required: [true, "product price  is required"],
