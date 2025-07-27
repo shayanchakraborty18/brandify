@@ -9,7 +9,7 @@ export const getAllProductsRepo = async (query, limit, page) => {
 	limit = limit || total;
 	const totalPages = Math.ceil(total / limit);
 	const skip = (page -  1) * limit;
-	const data = await ProductModel.find(query).skip(skip).limit(limit);
+	const data = await ProductModel.find(query).populate('categories', 'name').skip(skip).limit(limit);
 
 	return {data, totalPages, currentPage: page};
 };
@@ -27,7 +27,7 @@ export const deleteProductRepo = async (_id) => {
 };
 
 export const getProductDetailsRepo = async (_id) => {
-	return await ProductModel.findById(_id);
+	return await ProductModel.findById(_id).populate('categories', 'name');
 };
 
 export const getTotalCountsOfProduct = async () => {
@@ -39,9 +39,9 @@ export const findProductRepo = async (productId) => {
 };
 
 export const findProductFeaturedRepo = async (limit = 10) => {
-	return await ProductModel.find({isFeatured: true}).limit(limit);
+	return await ProductModel.find({isFeatured: true}).populate('categories', 'name').limit(limit);
 };
 
 export const findBestSellerProductsRepo = async (limit = 10) => {
-	return await ProductModel.find().sort({sold: -1}).limit(limit)
+	return await ProductModel.find().populate('categories', 'name').sort({sold: -1}).limit(limit)
 };

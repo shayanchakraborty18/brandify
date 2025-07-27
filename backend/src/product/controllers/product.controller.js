@@ -65,9 +65,9 @@ export const getAllProducts = async (req, res, next) => {
 			];
 		}
 
-		if(category) {
-			query.category = { $regex: category, $options: "i"};
-		}
+		// if(category) {
+		// 	query.category = { $regex: category, $options: "i"};
+		// }
 
 		if (price) {
 			query.$and = [];

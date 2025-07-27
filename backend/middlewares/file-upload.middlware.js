@@ -9,6 +9,9 @@ fs.mkdirSync(uploadDir1, { recursive: true });
 const uploadDir2 = path.join(process.cwd(), 'backend/public/uploads/product');
 fs.mkdirSync(uploadDir2, { recursive: true });
 
+const uploadDir3 = path.join(process.cwd(), 'backend/public/uploads/category');
+fs.mkdirSync(uploadDir3, { recursive: true });
+
 // configure with filename and storage
 const storageA = multer.diskStorage({
 	destination: (req, file, cb) => {
@@ -39,4 +42,21 @@ const storageB = multer.diskStorage({
 const uploadB = multer({
 	storage: storageB,
 });
-export { uploadA, uploadB };
+
+
+const storageC = multer.diskStorage({
+	destination: (req, file, cb) => {
+		cb(null, uploadDir3);
+	},
+	filename: (req, file, cb) => {
+		const uniqueId = uuidv4(); // public id
+		const ext = path.extname(file.originalname);
+		const customFileName = `${uniqueId}${ext}`;
+		file.publicId = uniqueId; // store publicId in file object
+		cb(null, customFileName);
+	},
+});
+const uploadC = multer({
+	storage: storageC,
+});
+export { uploadA, uploadB, uploadC };
