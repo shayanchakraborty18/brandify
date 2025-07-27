@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { useShop } from "../../context/ShopContext";
 import { ProductGrid } from "./ProductGrid";
+import { ProductCarousel } from "./ProductCarousel";
 
 export const Relatedproducts = ({ currentProduct }) => {
   const productCat = currentProduct.category;
@@ -13,7 +14,7 @@ export const Relatedproducts = ({ currentProduct }) => {
       const matchdata = await getCategory(productCat);
       const firstfour = matchdata
         .filter((item) => item._id !== currentproductid)
-        .slice(0, 4);
+        .slice(0, 8);
       setProducts(firstfour);
     };
     getRelProducts();
@@ -22,6 +23,7 @@ export const Relatedproducts = ({ currentProduct }) => {
   // console.log(products)
 
   return (
-    <ProductGrid productlList={products} gridTitle={"You May Alos Like"} />
+    <ProductCarousel productlList={products} title={'You May Also Like'}/>
+    // <ProductGrid productlList={products} gridTitle={"You May Alos Like"} />
   );
 };

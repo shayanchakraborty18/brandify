@@ -42,49 +42,53 @@ export default function Products() {
   return (
     <div className="container mx-auto px-4 py-8 lg:py-12">
       <div className="section-gap">
-
-      
-      <div className="text-center">
-        <h2 className="text-2xl font-semibold uppercase">{catname}</h2>
-        <div className="mt-2 w-20 h-1 bg-primary mx-auto rounded"></div>
-      </div>
-      <div className="flex gap-8">
-        <div className="w-64">
-          <div className="price-slider p-4 border rounded w-full">
-            <h3 className="font-semibold mb-2">Price Range</h3>
-            <input
-              onChange={(e) => setMaxPrice(Number(e.target.value))}
-              type="range"
-              min={initialPrice.min}
-              max={initialPrice.max}
-              value={maxPrice}
-              step="250"
-              className="w-full"
-            />
-            <div className="flex justify-between text-sm mt-1">
-              <span>₹{initialPrice.min}</span>
-              <span>₹{maxPrice}</span>
+        <div className="grid items-center grid-cols-1 md:grid-cols-2 lg:grid-cols-[1fr_3fr] gap-6 relative group">
+          
+            <div className="text-left">
+              <h2 className="text-2xl font-semibold uppercase">{catname}</h2>
+              {/* <div className="mt-2 w-20 h-1 bg-primary mx-left rounded"></div> */}
             </div>
-          </div>
-          <div>
-            <div className="flex justify-between gap-2 items-center">
-              <h3 className="font-semibold">Customer Ratings</h3>
-              {rating >= 4 && (
-                <div onClick={()=> setRating(0)} className="text-sm cursor-pointer">
-                  ✕<span> Clear</span>
-                </div>
-              )}
-            </div>
+          
+          <div className="flex justify-end gap-4 grid-cols-3">
+            <div className="price-slider p-2 rounded border border-text/20 bg-background">
+              
 
-            <div className="cursor-pointer" onClick={() => setRating(4)}>
-              <StarRating rating={4} info={"& Above"} />
+              <div className="flex justify-between text-sm gap-4 mb-1">
+                <span>₹{initialPrice.min}</span>
+                <h3 className="font-semibold text-text/50 uppercase">Max Price</h3>
+               
+                <span>₹{maxPrice}</span>
+              </div>
+               <input
+                  onChange={(e) => setMaxPrice(Number(e.target.value))}
+                  type="range"
+                  min={initialPrice.min}
+                  max={initialPrice.max}
+                  value={maxPrice}
+                  step="250"
+                  className="w-full accent-primary"
+                />
+            </div>
+            <div className="price-slider p-2 rounded border border-text/20 bg-background">
+              <div className="flex justify-between text-sm gap-4">
+                <h3 className="font-semibold text-text/50 uppercase">By Ratings</h3>
+                {rating >= 4 && (
+                  <div
+                    onClick={() => setRating(0)}
+                    className="text-sm cursor-pointer"
+                  >
+                    ✕<span> Clear</span>
+                  </div>
+                )}
+              </div>
+
+              <div className="cursor-pointer" onClick={() => setRating(4)}>
+                <StarRating rating={4} info={"& Above"} />
+              </div>
             </div>
           </div>
         </div>
-        <div className="flex-1">
-          <ProductGrid productlList={filterProducts} />
-        </div>
-      </div>
+        <ProductGrid productlList={filterProducts} />
       </div>
     </div>
   );

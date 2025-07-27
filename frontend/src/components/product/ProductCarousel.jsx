@@ -4,7 +4,7 @@ import "swiper/css";
 import "swiper/css/navigation";
 import { ProductCard } from "./ProductCard";
 
-export const ProductCarousel = ({ title, productlList, maxItem = 2 }) => {
+export const ProductCarousel = ({ title, productlList, maxItem = 4 }) => {
   return (
     <div className="section-gap">
       {title && (
@@ -23,7 +23,7 @@ export const ProductCarousel = ({ title, productlList, maxItem = 2 }) => {
           breakpoints={{
             320: { slidesPerView: 1 },
             640: { slidesPerView: 2 },
-            1024: { slidesPerView: 4 },
+            1024: { slidesPerView: maxItem },
           }}
         >
           {productlList.map((product) => (

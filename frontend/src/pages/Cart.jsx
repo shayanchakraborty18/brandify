@@ -9,7 +9,7 @@ export default function Cart() {
     return accumulator + item.price * item.quantity;
   }, 0);
 
-  console.log(cartItem);
+  // console.log(cartItem);
 
   return (
     <div className="container mx-auto px-4">
@@ -22,16 +22,16 @@ export default function Cart() {
         </div>
         {cartItem.length > 0 ? (
           <div className="flex gap-6">
-            <div className="bg-primary/5 rounded p-6 flex-1 border border-primary/20">
+            <div className="rounded-md shadow-md p-4 relative bg-background flex-1">
               {cartItem.map((item) => (
                 <div
                   key={item._id}
-                  className="flex items-center justify-between gap-6 border-b pb-4 mb-4 last:mb-0 last:border-b-0 last:pb-0 border-primary/20"
+                  className="flex items-center justify-between gap-6 border-b pb-4 mb-4 last:mb-0 last:border-b-0 last:pb-0 border-text/20"
                 >
                   <div className="flex items-center gap-4">
                     <Link
                       to={`/product/${item._id}`}
-                      className="flex bg-white rounded border border-primary/20 p-1"
+                      className="flex bg-white rounded border border-text/20 p-1"
                     >
                       <img
                         src={`http://localhost:3000/${item.images[0]?.url}`}
@@ -40,9 +40,9 @@ export default function Cart() {
                       />
                     </Link>
                     <div>
-                      <h2 className="text-lg font-semibold text-gray-800">
+                      <h4 className="text-base font-semibold text-gray-800">
                         {item.name}
-                      </h2>
+                      </h4>
                       <StarRating rating={item.rating} />
                       <p className="text-sm text-gray-500 font-semibold">
                         ${item.price} x {item.quantity}
@@ -64,8 +64,8 @@ export default function Cart() {
               ))}
             </div>
 
-            <div className="bg-primary/5 border border-primary/20 shadow-lg rounded p-6 w-96">
-              <h2 className="text-2xl font-bold mb-4 text-gray-800"></h2>
+            <div className="rounded-md shadow-md p-4 relative group bg-background w-96">
+              <h3 className="text-lg font-bold mb-4 text-gray-800">Order Summary</h3>
               <div className="space-y-2 text-gray-700 mb-6">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
@@ -75,7 +75,7 @@ export default function Cart() {
                   <span>Shipping</span>
                   <span>$10</span>
                 </div>
-                <div className="border-t pt-4 flex justify-between text-xl font-bold border-primary/20">
+                <div className="border-t pt-4 flex justify-between text-xl font-bold border-text/20">
                   <span>Total</span>
                   <span>${totalValue + 10}</span>
                 </div>

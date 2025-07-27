@@ -10,7 +10,7 @@ export const ProductCard = ({ product }) => {
 
   // const {id, name, new_price, old_price, image} = product
   return (
-    <div className="productCard rounded-md shadow-md p-4 relative group">
+    <div className="productCard rounded-md shadow-md p-4 relative group bg-background">
       <Link to={`/product/${product._id}`}>
         <div className="flex justify-center">
           <img

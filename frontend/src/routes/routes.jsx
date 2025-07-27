@@ -6,6 +6,7 @@ import Register from "../pages/Register";
 import Dashboard from "../pages/account/Dashboard";
 import OrderHistory from "../pages/account/OrderHistory";
 import Cart from "../pages/Cart";
+import Checkout from "../pages/Checkout";
 
 
 // Exporting route config as arrays
@@ -14,6 +15,7 @@ export const publicRoutes = [
   {path: "/products/:catname", element: <Products/>},
   { path: "/product/:id", element: <ProductDetail /> },
   { path: "/cart", element: <Cart/> },
+  { path: "/checkout", element: <Checkout /> },
 ];
 
 export const authRoutes = [
@@ -22,6 +24,7 @@ export const authRoutes = [
 ];
 
 export const privateRoutes = [
-  { path: "", element: <Dashboard /> }, // `/account`
-  { path: "orders", element: <OrderHistory /> }, // `/account/orders`
+  { path: "/account", element: <Dashboard /> }, // `/account`
+  { path: "/account/orders", element: <OrderHistory /> }, // `/account/orders`
+  
 ];

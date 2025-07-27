@@ -45,51 +45,54 @@ export default function ProductDetail() {
 
   return (
     <>
-      <Breadcrumb product={product} />
-
-      <div className="product-page -mt-4">
-        <div className="container mx-auto px-4 section-gap">
-          <div className="grid grid-cols-2 gap-8">
-            <ProductImage product={product} />
-            <div>
-              <ProductDetailsInfo product={product} />
-              <AddToCart product={product} />
-              <div className="flex items-center justify-between gap-4 py-4 border-b border-neutral-300 my-4">
-                <div className="flex flex-col items-center">
-                  <FaBox size={30} color="#999" />
-                  <p className="text-center text-sm leading-tight mt-2">
-                    Secure Packing
-                  </p>
+      <div className="product-page section-gap">
+        <div className="productDetails bg-background">
+          <Breadcrumb product={product} />
+          <div className="container mx-auto px-4">
+            <div className="grid grid-cols-2 gap-8 my-6">
+              <ProductImage product={product} />
+              <div>
+                <ProductDetailsInfo product={product} />
+                <AddToCart product={product} />
+                <div className="flex items-center justify-between gap-4 py-4 border-b border-neutral-300 my-4">
+                  <div className="flex flex-col items-center">
+                    <FaBox size={30} color="#999" />
+                    <p className="text-center text-sm leading-tight mt-2">
+                      Secure Packing
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <FaShippingFast size={32} color="#999" />
+                    <p className="text-center text-sm leading-tight mt-2">
+                      Free Delivery
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <FaLock size={30} color="#999" />
+                    <p className="text-center text-sm leading-tight mt-2">
+                      Secure Payment
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <FaMoneyBillWave size={32} color="#999" />
+                    <p className="text-center text-sm leading-tight mt-2">
+                      Cash on Delivery
+                    </p>
+                  </div>
+                  <div className="flex flex-col items-center">
+                    <FaClipboardCheck size={30} color="#999" />
+                    <p className="text-center text-sm leading-tight mt-2">
+                      Warranty Policy
+                    </p>
+                  </div>
                 </div>
-                <div className="flex flex-col items-center">
-                  <FaShippingFast size={32} color="#999" />
-                  <p className="text-center text-sm leading-tight mt-2">
-                    Free Delivery
-                  </p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <FaLock size={30} color="#999" />
-                  <p className="text-center text-sm leading-tight mt-2">
-                    Secure Payment
-                  </p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <FaMoneyBillWave size={32} color="#999" />
-                  <p className="text-center text-sm leading-tight mt-2">
-                    Cash on Delivery
-                  </p>
-                </div>
-                <div className="flex flex-col items-center">
-                  <FaClipboardCheck size={30} color="#999" />
-                  <p className="text-center text-sm leading-tight mt-2">
-                    Warranty Policy
-                  </p>
-                </div>
+                <p className="text-lg font-medium">{product.description}</p>
               </div>
-              <p className="text-lg font-medium">{product.description}</p>
             </div>
           </div>
-          <Relatedproducts currentProduct={product}/>
+        </div>
+        <div className="container mx-auto px-4">
+          <Relatedproducts currentProduct={product} />
         </div>
       </div>
     </>

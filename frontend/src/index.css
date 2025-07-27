@@ -46,7 +46,9 @@ h1 {
   --color-background: #F7F7F7;
   --color-text: #242424;
 }
-
+.input{
+  @apply border border-text/20 bg-background p-4 rounded
+}
 .btn {
   @apply border border-transparent rounded-md px-3 py-2 text-background bg-primary font-medium transition-all duration-300 hover:bg-background hover:text-primary hover:border-primary;
 }
@@ -66,8 +68,9 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    color: #213547;
-    background-color: #ffffff;
+    @apply text-text bg-text/10
+    /* color: var(--color-text);
+    background-color: var(--color-background); */
   }
   /* a:hover {
     color: #747bff;
