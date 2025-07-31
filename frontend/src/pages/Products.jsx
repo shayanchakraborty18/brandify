@@ -28,14 +28,20 @@ export default function Products() {
     matchCategory();
   }, [catname]);
 
+console.log(initialPrice.max)
+
   useEffect(() => {
+  if (initialPrice.max > 0) {
     setMaxPrice(initialPrice.max);
-  }, [initialPrice.max]);
+  }
+}, [initialPrice.max]);
+
 
   const filterProducts = category.filter(
     (item) => item.price <= maxPrice && item.rating >= rating
   );
-  console.log(rating);
+  const items = filterProducts.length;
+  // console.log(rating);
   if (loading) return <p>Loading...</p>;
   if (category.length === 0) return <p>No matching category found</p>;
 
@@ -47,6 +53,7 @@ export default function Products() {
             <div className="text-left">
               <h2 className="text-2xl font-semibold uppercase">{catname}</h2>
               {/* <div className="mt-2 w-20 h-1 bg-primary mx-left rounded"></div> */}
+              <p>{items} Items</p>
             </div>
           
           <div className="flex justify-end gap-4 grid-cols-3">
@@ -65,7 +72,6 @@ export default function Products() {
                   min={initialPrice.min}
                   max={initialPrice.max}
                   value={maxPrice}
-                  step="250"
                   className="w-full accent-primary"
                 />
             </div>

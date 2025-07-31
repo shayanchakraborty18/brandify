@@ -4,10 +4,12 @@ import { ProductGrid } from "./ProductGrid";
 import { ProductCarousel } from "./ProductCarousel";
 
 export const Relatedproducts = ({ currentProduct }) => {
-  const productCat = currentProduct.category;
+  const productCat = currentProduct.categories[0]?.name.toLowerCase();
   const currentproductid = currentProduct._id;
   const [products, setProducts] = useState([]);
   const { getCategory } = useShop();
+
+  // console.log(productCat)
 
   useEffect(() => {
     const getRelProducts = async () => {

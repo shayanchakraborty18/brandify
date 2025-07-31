@@ -7,11 +7,13 @@ import Dashboard from "../pages/account/Dashboard";
 import OrderHistory from "../pages/account/OrderHistory";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
+import { AllProducts } from "../pages/AllProducts";
 
 
 // Exporting route config as arrays
 export const publicRoutes = [
   { path: "/", element: <Home /> },
+  {path: "/products/", element: <AllProducts/>},
   {path: "/products/:catname", element: <Products/>},
   { path: "/product/:id", element: <ProductDetail /> },
   { path: "/cart", element: <Cart/> },

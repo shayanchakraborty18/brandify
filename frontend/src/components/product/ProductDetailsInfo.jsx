@@ -8,7 +8,7 @@ export const ProductDetailsInfo = ({product}) => {
         <h2 className='text-2xl font-bold'>{product.name}</h2>
         <StarRating rating={product.rating}/>
         <p>InStock : {product.stock}</p>
-        <p className='text-lg font-semibold'>${product.price}</p>
+        <p className='text-lg font-semibold'>₹{product.price}</p>
     </div>
   )
 }

@@ -12,13 +12,14 @@ import {
   FaTv,
   FaMouse,
 } from "react-icons/fa";
+import { BsPrinter } from "react-icons/bs";
 import { BsSmartwatch, BsSpeaker } from "react-icons/bs";
 import { useShop } from "../../context/ShopContext";
 
 import { useCart } from "../../context/CartContext";
 
 export default function Navbar() {
-  const [showmenu, setShowmenu] = useState(false);
+  const [showmenu, setShowmenu] = useState(true);
   const [keyword, setKeyword] = useState("");
   const [searchProduct, setSearchProduct] = useState([]);
 
@@ -26,7 +27,7 @@ export default function Navbar() {
 
   useEffect(() => {
     const getResult = async () => {
-      if (keyword.trim().length < 2) {
+      if (keyword.trim().length < 3) {
         setSearchProduct([]);
         return;
       }
@@ -54,13 +55,15 @@ export default function Navbar() {
             </div>
             <div className="relative">
               <div className="productFindBox text-base bg-background border rounded flex border-primary/30">
-                <button
-                  onClick={() => setShowmenu(!showmenu)}
-                  className="flex items-center gap-2 p-2 bg-primary/15 border-r border-primary/30"
-                >
-                  <FaBars className="text-primary" size={18} />
-                  All Products
-                </button>
+                <div className="flex items-stretch">
+                  <button
+                    onClick={() => setShowmenu(!showmenu)}
+                    className="py-2 px-3 bg-primary/15 border-r border-primary/30"
+                  >
+                    <FaBars className="text-primary" size={18} />
+                  </button>
+                  <Link className="p-2 bg-primary/15 border-r border-primary/30" to={'/products'}>All Products</Link>
+                </div>
 
                 <input
                   type="text"
@@ -80,7 +83,9 @@ export default function Navbar() {
               <Link to="/cart">
                 <div className="relative">
                   <img width={20} src={cartIcon} alt="Cart" />
-                  <span className="badge absolute -top-1 -right-2 min-w-3.5 h-3.5 px-0.5 bg-primary text-white rounded-md flex items-center justify-center text-xs leading-0">{totalItems}</span>
+                  <span className="badge absolute -top-1 -right-2 min-w-3.5 h-3.5 px-0.5 bg-primary text-white rounded-md flex items-center justify-center text-xs leading-0">
+                    {totalItems}
+                  </span>
                 </div>
               </Link>
             </div>
@@ -103,7 +108,7 @@ export default function Navbar() {
                 <li>
                   <Link
                     className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
-                    to="products/mobile"
+                    to="products/headphone"
                   >
                     <FaHeadphones /> Headphone
                   </Link>
@@ -111,7 +116,7 @@ export default function Navbar() {
                 <li>
                   <Link
                     className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
-                    to="products/mobile"
+                    to="products/tablet"
                   >
                     <FaTabletAlt /> Tablet
                   </Link>
@@ -119,7 +124,7 @@ export default function Navbar() {
                 <li>
                   <Link
                     className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
-                    to="products/mobile"
+                    to="products/laptop"
                   >
                     <FaLaptop /> Laptop
                   </Link>
@@ -127,7 +132,7 @@ export default function Navbar() {
                 <li>
                   <Link
                     className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
-                    to="products/mobile"
+                    to="products/wearable"
                   >
                     <BsSmartwatch /> Wearable
                   </Link>
@@ -135,36 +140,35 @@ export default function Navbar() {
                 <li>
                   <Link
                     className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
-                    to="products/mobile"
+                    to="products/printer"
                   >
-                    <FaCamera /> Camera
+                    <BsPrinter /> Printer
                   </Link>
                 </li>
                 <li>
                   <Link
                     className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
-                    to="products/mobile"
+                    to="products/monitor"
                   >
-                    <FaTv /> Television
+                    <FaTv /> Monitor
                   </Link>
                 </li>
                 <li>
                   <Link
                     className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
-                    to="products/mobile"
+                    to="products/speakers"
                   >
-                    <BsSpeaker /> Speaker
+                    <BsSpeaker /> Speakers
                   </Link>
                 </li>
                 <li>
                   <Link
                     className="py-2 px-4 flex bg-background/50 hover:bg-background gap-2 items-center"
-                    to="products/mobile"
+                    to="products/accessories"
                   >
                     <FaMouse /> Accessories
                   </Link>
                 </li>
-                
               </ul>
             </div>
           </div>
@@ -175,7 +179,11 @@ export default function Navbar() {
           <div className="overflow-x-auto">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
               {searchProduct.map((item) => (
-                <div key={item._id} onClick={()=> setKeyword("")} className="border border-primary/20 rounded bg-background overflow-hidden my-2">
+                <div
+                  key={item._id}
+                  onClick={() => setKeyword("")}
+                  className="border border-primary/20 rounded bg-background overflow-hidden my-2"
+                >
                   <Link to={`/product/${item._id}`}>
                     <img
                       width={200}

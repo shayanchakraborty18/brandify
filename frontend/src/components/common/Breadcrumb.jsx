@@ -23,8 +23,8 @@ export const Breadcrumb = ({ product }) => {
                 alt="Cart"
                 className="w-4 h-4 opacity-50"
               />
-              <Link to={`/products/${product?.category.toLowerCase()}`} className=" capitalize">
-                {product?.category}
+              <Link to={`/products/${product.categories[0]?.name.toLowerCase()}`} className=" capitalize">
+                {product?.categories[0]?.name}
               </Link>
             </div>
           </li>

@@ -21,6 +21,8 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
+  console.log(product)
+
   useEffect(() => {
     if (id) {
       setLoading(true);
@@ -86,7 +88,7 @@ export default function ProductDetail() {
                     </p>
                   </div>
                 </div>
-                <p className="text-lg font-medium">{product.description}</p>
+                <p className="text-lg font-medium">{product.shortDescription}</p>
               </div>
             </div>
           </div>

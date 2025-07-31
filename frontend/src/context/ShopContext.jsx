@@ -11,7 +11,7 @@ import {
 const ShopContext = createContext();
 
 export const ShopContextProvider = ({ children }) => {
-  const [products, setProducts] = useState([]);
+  // const [products, setProducts] = useState([]);
   const [bestSelling, setBestSelling] = useState([]);
 
   const [loading, setLoading] = useState(false);
@@ -33,13 +33,13 @@ export const ShopContextProvider = ({ children }) => {
     setLoading(true);
     try {
       const res = await getAllProducts();
-      setProducts(res.data.products.data);
+      // setProducts(res.data.products.data);
+      return res.data.products.data
       //   console.log(res.data.products.data)
     } catch (err) {
       console.error("Error fetching products:", err);
-    } finally {
-      setLoading(false);
-    }
+      return null
+    } 
   };
 
   const getProductDetail = async (id) => {
@@ -56,7 +56,8 @@ export const ShopContextProvider = ({ children }) => {
   const getCategory = async (catname) => {
     try {
       const res = await getProductCategory(catname);
-      return res.data.products.data;
+      return res.data.products;
+      // return res
     } catch (err) {
       console.error("Error getting category:", err);
       return null;
@@ -80,7 +81,7 @@ export const ShopContextProvider = ({ children }) => {
   return (
     <ShopContext.Provider
       value={{
-        products,
+        fetchAllProducts,
         loading,
         bestSelling,
         getProductDetail,

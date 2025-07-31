@@ -28,7 +28,7 @@ export const ProductCard = ({ product }) => {
       </div>
 
       <div className="flex justify-center gap-2 mb-2">
-        <p className="text-primary font-bold">${product.price}</p>
+        <p className="text-primary font-bold">₹{product.price}</p>
         {/* <p className="line-through text-text/50">${product.old_price}</p> */}
       </div>
       <div className="flex justify-center gap-2">
