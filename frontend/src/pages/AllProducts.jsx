@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { useShop } from "../context/ShopContext";
 import { ProductGrid } from "../components/product/ProductGrid";
 import { StarRating } from "../components/common/StarRating";
+import { ProductCardSkeleton } from "../components/product/ProductCardSkeleton";
 
 export const AllProducts = () => {
   const [products, setProducts] = useState([]);
@@ -9,6 +10,7 @@ export const AllProducts = () => {
   const [initialPrice, setInitialPrice] = useState({ min: 0, max: 0 });
   const [maxPrice, setMaxPrice] = useState(0);
   const [rating, setRating] = useState(0);
+  const [loading, setLoading] = useState(true);
 
   useEffect(() => {
     const getAllProducts = async () => {
@@ -18,22 +20,33 @@ export const AllProducts = () => {
       const min = Math.min(...prices);
       const max = Math.max(...prices);
       setInitialPrice({ min, max });
+      setLoading(false);
     };
 
     getAllProducts();
   }, [products]);
 
   useEffect(() => {
-  if (initialPrice.max > 0) {
-    setMaxPrice(initialPrice.max);
-  }
-}, [initialPrice.max]);
+    if (initialPrice.max > 0) {
+      setMaxPrice(initialPrice.max);
+    }
+  }, [initialPrice.max]);
 
-    const filterProducts = products.filter(
+  const filterProducts = products.filter(
     (item) => item.price <= maxPrice && item.rating >= rating
   );
 
   const items = filterProducts.length;
+
+  if (loading) {
+    return (
+      <div className="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+        {Array.from({ length: 8 }).map((_, i) => (
+          <ProductCardSkeleton key={i} />
+        ))}
+      </div>
+    );
+  }
 
   console.log(products);
   return (
@@ -67,7 +80,9 @@ export const AllProducts = () => {
             </div>
             <div className="price-slider p-2 rounded border border-text/20 bg-background">
               <div className="flex justify-between text-sm gap-4">
-                <h3 className="font-semibold text-text/50 uppercase">By Ratings</h3>
+                <h3 className="font-semibold text-text/50 uppercase">
+                  By Ratings
+                </h3>
                 {rating >= 4 && (
                   <div
                     onClick={() => setRating(0)}

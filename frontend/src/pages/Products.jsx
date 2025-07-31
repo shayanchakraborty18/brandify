@@ -3,6 +3,7 @@ import { useShop } from "../context/ShopContext";
 import { useParams } from "react-router-dom";
 import { ProductGrid } from "../components/product/ProductGrid";
 import { StarRating } from "../components/common/StarRating";
+import { ProductCardSkeleton } from "../components/product/ProductCardSkeleton";
 
 export default function Products() {
   const { getCategory } = useShop();
@@ -42,7 +43,17 @@ console.log(initialPrice.max)
   );
   const items = filterProducts.length;
   // console.log(rating);
-  if (loading) return <p>Loading...</p>;
+  // if (loading) return <p>Loading...</p>;
+  if (loading) {
+  return (
+    <div className="container mx-auto px-4 py-8 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
+      {Array.from({ length: 8 }).map((_, i) => (
+        <ProductCardSkeleton key={i} />
+      ))}
+    </div>
+  );
+}
+
   if (category.length === 0) return <p>No matching category found</p>;
 
   return (

@@ -14,6 +14,7 @@ import {
   FaClipboardCheck,
 } from "react-icons/fa";
 import { Relatedproducts } from "../components/product/Relatedproducts";
+import Tabs from "../components/common/Tabs";
 
 export default function ProductDetail() {
   const { getProductDetail } = useShop();
@@ -21,7 +22,7 @@ export default function ProductDetail() {
   const [loading, setLoading] = useState(true);
   const { id } = useParams();
 
-  console.log(product)
+  // console.log(product)
 
   useEffect(() => {
     if (id) {
@@ -93,6 +94,7 @@ export default function ProductDetail() {
             </div>
           </div>
         </div>
+        <Tabs product={product}/>
         <div className="container mx-auto px-4">
           <Relatedproducts currentProduct={product} />
         </div>
