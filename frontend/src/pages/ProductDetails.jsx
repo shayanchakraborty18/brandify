@@ -43,7 +43,7 @@ export default function ProductDetail() {
   if (!product)
     return <div className="p-6 text-red-500">Product not found {id}</div>;
 
-  // console.log(product);
+  console.log(product);
   // console.log(product.category);
 
   return (
@@ -89,7 +89,7 @@ export default function ProductDetail() {
                     </p>
                   </div>
                 </div>
-                <p className="text-lg font-medium">{product.shortDescription}</p>
+                <p className="font-medium">{product.shortDescription}</p>
               </div>
             </div>
           </div>

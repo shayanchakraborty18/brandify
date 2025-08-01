@@ -16,8 +16,8 @@ export const ProductImage = ({ product }) => {
   }
 
   return (
-    <div className="flex">
-      <div className="flex flex-col items-center p-4 space-y-4 w-1/5">
+    <div className="flex gap-4">
+      <div className="flex flex-col items-center space-y-4 w-[108px] max-h-[484px] overflow-y-auto">
         {}
         {product?.images?.map((item, index) => (
           <div
@@ -33,7 +33,7 @@ export const ProductImage = ({ product }) => {
         ))}
       </div>
 
-      <div className="flex-1 p-4">
+      <div className="flex-1">
         <img
           src={`http://localhost:3000/${mainImg}`}
           alt={product.name}

@@ -4,8 +4,9 @@ export default function Tabs({ product }) {
   const [activeIndex, setActiveIndex] = useState(0);
   const { description, features } = product;
   const selected = [
-    { label: "features", content: features },
     { label: "description", content: description },
+    { label: "features", content: features },
+    
   ];
 
 
@@ -27,7 +28,7 @@ export default function Tabs({ product }) {
         ))}
       </div>
 
-      <div className="px-4 py-6 border rounded-b-md shadow border-primary/50 border-t-0 bg-white">
+      <div className="px-4 py-6 border rounded-b-md shadow border-text/10 border-t-0 bg-white">
         {selected[activeIndex].content}
       </div>
     </div>
