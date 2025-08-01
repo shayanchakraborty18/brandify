@@ -8,6 +8,11 @@ const productSchema = new mongoose.Schema(
 			required: [true, "product name is required"],
 			trim: true,
 		},
+		product_slug: {
+			type: String,
+			required: [true, "product slug is required"],
+			trim: true,
+		},
 		shortDescription: { type: String },
 		description: {
 			type: String,
@@ -24,11 +29,20 @@ const productSchema = new mongoose.Schema(
 			required: [true, "product price  is required"],
 			maxLength: [8, "price can be of maximum 8 digits"],
 		},
+		discount_price: {
+			type: Number,
+			maxLength: [8, "price can be of maximum 8 digits"],
+		},
+
 		rating: {
 			type: Number,
 			default: 0,
 		},
 		isFeatured: {
+			type: Boolean,
+			default: false
+		},
+		on_sale: {
 			type: Boolean,
 			default: false
 		},
