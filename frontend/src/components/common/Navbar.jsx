@@ -187,7 +187,7 @@ export default function Navbar() {
                   <Link to={`/product/${item._id}`}>
                     <img
                       width={200}
-                      src={`http://localhost:3000/${item.images[0].url}`}
+                      src={`https://brandify-8mm5.onrender.com/api/brandify/${item.images[0].url}`}
                     />
                   </Link>
                   <p className="p-2">{item.name}</p>
