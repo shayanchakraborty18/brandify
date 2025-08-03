@@ -1,7 +1,7 @@
-import e from "express";
 import { ErrorHandler } from "../../../utils/errorHandler.js";
 import { addNewCategoryRepo, deleteCategoryRepo, getAllCategoriesRepo, getCategoryDetailsRepo, getProductsByCategoryIdRepo, getProductsByCategorySlugRepo, getTotalCountsOfCategoryRepo, updateCategoryRepo } from "../model/category.repository.js";
-
+import cloudinary from "../../../config/cloudinary.js";
+import fs from "fs";
 
 export const addNewCategory = async (req, res, next) => {
   try {
@@ -9,9 +9,14 @@ export const addNewCategory = async (req, res, next) => {
     if(!req.file || req.file.length === 0) {
       insertData = req.body;
     } else {
+      const result = await cloudinary.uploader.upload(req.file.path, { 
+        folder: "category", 
+      });
+      // Remove temp file
+      fs.unlinkSync(req.file.path);
       const fileInfo = {
-        public_id: req.file.publicId,
-        url: `static/uploads/category/${req.file.filename}`
+        public_id:result.public_id,
+        url: result.secure_url
       };
       insertData = {...req.body, image: fileInfo};
     }
@@ -30,9 +35,14 @@ export const updateCategory = async (req, res, next) => {
     if(!req.file || req.file.length === 0) {
       updatedData = req.body;
     } else {
+      const result = await cloudinary.uploader.upload(req.file.path, { 
+        folder: "category", 
+      });
+      // Remove temp file
+      fs.unlinkSync(req.file.path);
       const fileInfo = {
-        public_id: req.file.publicId,
-        url: `static/uploads/category/${req.file.filename}`
+        public_id:result.public_id,
+        url: result.secure_url
       };
       updatedData = {...req.body, image: fileInfo};
     }
