@@ -1,5 +1,5 @@
 {
-  "vesion": 2,
+  "version": 2,
   "builds": [
     {
       "src": "backend/server.js",
@@ -19,5 +19,5 @@
       "src": "/(.*)",
       "dest": "/frontend/index.html"
     }
-  ]
+  ] 
 }
