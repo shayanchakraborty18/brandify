@@ -15,7 +15,7 @@ export const ProductCard = ({ product }) => {
         <div className="flex justify-center">
           <img
             onClick={() => window.scrollTo(0, 0)}
-            src={`https://brandify-8mm5.onrender.com/${product.images?.[0]?.url}`}
+            src={`http://localhost:3000/${product.images?.[0]?.url}`}
             alt=""
           />
         </div>

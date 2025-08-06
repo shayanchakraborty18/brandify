@@ -26,7 +26,7 @@ export const ProductImage = ({ product }) => {
             onClick={() => setMainImg(item.url)}
           >
             <img
-              src={`https://brandify-8mm5.onrender.com/${item.url}`}
+              src={`http://localhost:3000/${item.url}`}
               className="w-full h-auto object-cover rounded-lg cursor-pointer hover:shadow-lg"
             />
           </div>
@@ -35,7 +35,7 @@ export const ProductImage = ({ product }) => {
 
       <div className="flex-1">
         <img
-          src={`https://brandify-8mm5.onrender.com/${mainImg}`}
+          src={`http://localhost:3000/${mainImg}`}
           alt={product.name}
           className="w-full h-auto object-cover rounded-lg"
         />

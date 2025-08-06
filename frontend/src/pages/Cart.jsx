@@ -34,7 +34,7 @@ export default function Cart() {
                       className="flex bg-white rounded border border-text/20 p-1"
                     >
                       <img
-                        src={`https://brandify-8mm5.onrender.com/${item.images[0]?.url}`}
+                        src={`http://localhost:3000/${item.images[0]?.url}`}
                         alt={item.name}
                         className="w-20 h-20"
                       />
