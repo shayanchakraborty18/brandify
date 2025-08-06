@@ -7,4 +7,4 @@ server.listen(PORT, async () => {
 	console.log(`Server running at port ${PORT}`);
 	//connect to mongo db
 	await connectToMongoDB();
-})
+}) 
