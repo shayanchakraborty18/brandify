@@ -1,5 +1,7 @@
 import UserModel from "./user.schema.js";
 import path from "path";
+import cloudinary from "../../../config/cloudinary.js";
+import fs from "fs";
 
 export const createNewUserRepo = async (user) => {
 	return await new UserModel(user).save();
@@ -21,13 +23,28 @@ export const updateUserProfileRepo = async (_id, data) => {
 	let publicId,publicUrl;
 	const {name, email, file} = data;
 
+	// if (!file) {
+	// 	const user = await UserModel.findById(_id);
+	// 	publicId = user.profileImg.public_id;
+	// 	publicUrl = user.profileImg.url;
+	// } else {
+	// 	publicUrl = `static/uploads/user/${file.filename}`;
+	// 	publicId = path.parse(file.filename).name;
+	// }
+
 	if (!file) {
 		const user = await UserModel.findById(_id);
 		publicId = user.profileImg.public_id;
 		publicUrl = user.profileImg.url;
-	} else {
-		publicUrl = `static/uploads/user/${file.filename}`;
-		publicId = path.parse(file.filename).name;
+	}
+	else {
+		const result = await cloudinary.uploader.upload(file.path, { 
+			folder: "user"
+		});
+		// Remove temp file
+		fs.unlinkSync(file.path);
+		publicId = result.public_id;
+		publicUrl = result.secure_url;
 	}
 
 	const update_data = {
@@ -35,7 +52,7 @@ export const updateUserProfileRepo = async (_id, data) => {
 		email: email,
 		profileImg: {
 			public_id: publicId,
-			url: publicUrl
+			url: publicUrl,
 		}
 	}
 	return await UserModel.findOneAndUpdate(_id, update_data, {
