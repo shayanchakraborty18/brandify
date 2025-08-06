@@ -18,7 +18,7 @@ import { BsSmartwatch, BsSpeaker } from "react-icons/bs";
 import { useShop } from "../../context/ShopContext";
 
 import { useCart } from "../../context/CartContext";
-import ThemeSelector from "../../theme/themeSelector";
+import ThemeSelector from "../../theme/ThemeSelector.jsx";
 
 export default function Navbar() {
   const [showmenu, setShowmenu] = useState(true);
