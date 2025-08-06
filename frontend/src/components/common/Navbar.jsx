@@ -2,6 +2,7 @@ import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import cartIcon from "../../assets/icons/bag-shopping-solid.svg";
 import usericon from "../../assets/icons/user-solid.svg";
+import { MdColorLens } from "react-icons/md";
 import {
   FaBars,
   FaMobileAlt,
@@ -17,11 +18,13 @@ import { BsSmartwatch, BsSpeaker } from "react-icons/bs";
 import { useShop } from "../../context/ShopContext";
 
 import { useCart } from "../../context/CartContext";
+import ThemeSelector from "../../theme/themeSelector";
 
 export default function Navbar() {
   const [showmenu, setShowmenu] = useState(true);
   const [keyword, setKeyword] = useState("");
   const [searchProduct, setSearchProduct] = useState([]);
+  const [showThemeSelector, setShowThemeSelector] = useState(false);
 
   const { getSearchproducts } = useShop();
 
@@ -62,7 +65,12 @@ export default function Navbar() {
                   >
                     <FaBars className="text-primary" size={18} />
                   </button>
-                  <Link className="p-2 bg-primary/15 border-r border-primary/30" to={'/products'}>All Products</Link>
+                  <Link
+                    className="p-2 bg-primary/15 border-r border-primary/30"
+                    to={"/products"}
+                  >
+                    All Products
+                  </Link>
                 </div>
 
                 <input
@@ -75,8 +83,15 @@ export default function Navbar() {
               </div>
             </div>
 
-            <div className="flex items-center gap-6">
+            <div className="flex items-center gap-6 relative">
               {/* <button className="btn btn-outline btn-primary">Login</button> */}
+              <MdColorLens size={28} className="cursor-pointer" onClick={() => setShowThemeSelector(!showThemeSelector)} />
+              {showThemeSelector && (
+                <div className="absolute top-12 left-0 bg-background border border-primary/30 z-10">
+                  <div className="text-xs font-bold p-2 pb-0 uppercase">Select Theme</div>
+                  <ThemeSelector />
+                </div>
+              )}
               <Link to="/login">
                 <img width={20} src={usericon} alt="User" />
               </Link>

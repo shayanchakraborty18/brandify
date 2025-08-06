@@ -33,12 +33,22 @@ export const ProductImage = ({ product }) => {
         ))}
       </div>
 
-      <div className="flex-1">
+      <div className="flex-1 relative">
         <img
           src={`http://localhost:3000/${mainImg}`}
           alt={product.name}
           className="w-full h-auto object-cover rounded-lg"
         />
+        {product.new_arrival && (
+          <div className="absolute top-0 left-0 bg-primary text-white text-sm px-2 py-1 rounded-br-lg">
+            New Arrival
+          </div>
+        )}
+        {product.on_sale && (
+          <div className="absolute top-0 right-0 bg-red-500 text-white text-sm px-2 py-1 rounded-bl-lg">
+            On Sale
+          </div>
+        )}
       </div>
     </div>
   );

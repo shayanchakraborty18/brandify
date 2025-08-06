@@ -12,12 +12,22 @@ export const ProductCard = ({ product }) => {
   return (
     <div className="productCard rounded-md shadow-md p-4 relative group bg-background">
       <Link to={`/product/${product._id}`}>
-        <div className="flex justify-center">
+        <div className="flex justify-center relative">
           <img
             onClick={() => window.scrollTo(0, 0)}
             src={`http://localhost:3000/${product.images?.[0]?.url}`}
             alt=""
           />
+          {product.on_sale && (
+            <div className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 uppercase rounded-bl-lg text-xs">
+              On Sale
+            </div>
+          )}
+          {product.new_arrival && (
+            <div className="absolute top-0 left-0 bg-primary text-white px-2 py-1 uppercase rounded-br-lg text-xs">
+              New Arrival
+            </div>
+          )}
         </div>
         <h4 className="text-text font-medium my-2 text-center">
           {product.name}
@@ -30,6 +40,9 @@ export const ProductCard = ({ product }) => {
       <div className="flex justify-center gap-2 mb-2">
         <p className="text-primary font-bold">₹{product.price}</p>
         {/* <p className="line-through text-text/50">${product.old_price}</p> */}
+        {product.discount_price && (
+          <p className="line-through text-text/50">₹{product.discount_price}</p>
+        )}
       </div>
       <div className="flex justify-center gap-2">
         <AddToCart product={product} />

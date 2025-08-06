@@ -41,10 +41,16 @@ h1 {
   line-height: 1.1;
 } */
 
-@theme{
+
+:root {
   --color-primary: #646cff;
   --color-background: #F7F7F7;
   --color-text: #242424;
+}
+@theme{
+  --color-primary: var(--color-primary);
+  --color-background: var(--color-background);
+  --color-text: var(--color-text);
 }
 .input{
   @apply border border-text/20 bg-background p-4 rounded
@@ -68,7 +74,7 @@ button:focus-visible {
 
 @media (prefers-color-scheme: light) {
   :root {
-    @apply text-text bg-text/10
+    @apply text-text bg-background/50
     /* color: var(--color-text);
     background-color: var(--color-background); */
   }

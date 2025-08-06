@@ -46,6 +46,10 @@ const productSchema = new mongoose.Schema(
 			type: Boolean,
 			default: false
 		},
+		new_arrival: {
+			type: Boolean,
+			default: false
+		},
 		sold: {
 			type: Number,
 			default: 0

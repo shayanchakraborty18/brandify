@@ -1,5 +1,6 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
+  getAllCategory,
   getAllProducts,
   getBestSeller,
   getfeaturedProduct,
@@ -64,12 +65,33 @@ export const ShopContextProvider = ({ children }) => {
     }
   };
 
+  const getAllCategorys = async () => {
+    try {
+      const res = await getAllCategory();
+      return res.data.categories.data;
+      // return res
+    } catch (err) {
+      console.error("Error getting category:", err);
+      return null;
+    }
+  };
+
+
   const getSearchproducts = async (keyword) => {
     try {
       const res = await getSearchproduct(keyword);
       return res.data.products.data;
     } catch (err) {
       console.error("Error getting in product search", err);
+    }
+  };
+
+  const getFeaturedProducts = async () => {
+    try {
+      const res = await getfeaturedProduct();
+      return res.data.products;
+    } catch (err) {
+      console.error("Error getting featured products", err);
     }
   };
 
@@ -87,6 +109,8 @@ export const ShopContextProvider = ({ children }) => {
         getProductDetail,
         getCategory,
         getSearchproducts,
+        getFeaturedProducts,
+        getAllCategorys
       }}
     >
       {children}
