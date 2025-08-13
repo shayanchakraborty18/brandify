@@ -8,3 +8,5 @@ export const getfeaturedProduct = (params) => api.get('/product/featured/', { pa
 export const getProductCategory = (catname) => api.get(`/product/category/slug/${catname}`)
 export const getSearchproduct = (keyword) => api.get(`/product/products?page=1&keyword=${keyword}`)
 export const getAllCategory = () => api.get(`/product/categories`);
+
+export const getAllOrders = () => api.get(`/order/orders/placed`);

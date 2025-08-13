@@ -8,7 +8,7 @@ export const AddToCart = ({product, icon=false}) => {
   return (
     <>
         {/* <input type="number" className="input input-sm w-24" defaultValue={1} /> */}
-      <button onClick={() => addToCart(product)} className="btn btn-primary">{icon && <FaCartPlus />} {!icon && <span>Add to Cart</span>}</button>
+      <button onClick={() => addToCart(product)} className="btn btn-primary cursor-pointer">{icon && <FaCartPlus />} {!icon && <span>Add to Cart</span>}</button>
 
     </>
   )

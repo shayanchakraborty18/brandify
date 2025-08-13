@@ -17,10 +17,10 @@ export default function Tabs({ product }) {
           <button
             key={index}
             onClick={() => setActiveIndex(index)}
-            className={`px-4 py-2 text-sm uppercase rounded-t-md bg-background font-medium border-b-2 transition-all duration-200 ${
+            className={`px-4 py-2 text-base uppercase rounded-t-md bg-card font-semibold border-b-2 transition-all duration-200 ${
               activeIndex === index
-                ? "border-primary text-primary shadow-md"
-                : "border-transparent text-text hover:text-primary"
+                ? "border-primary text-primary shadow-md bg-primary/10"
+                : "border-transparent text-text hover:text-primary cursor-pointer"
             }`}
           >
             {tab.label}

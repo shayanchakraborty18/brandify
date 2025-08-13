@@ -26,7 +26,7 @@ export const ProductCarousel = ({ title, productlList, maxItem = 4 }) => {
             1024: { slidesPerView: maxItem },
           }}
         >
-          {productlList.map((product) => (
+          {productlList?.map((product) => (
             <SwiperSlide key={product._id}>
               <ProductCard product={product} />
             </SwiperSlide>

@@ -1,12 +1,18 @@
-// routes/PrivateRoute.jsx
+// routes/ProtectedRoute.jsx
 import { useAuth } from "../context/AuthContext";
-import { Navigate } from "react-router-dom";
+import { Navigate, useLocation } from "react-router-dom";
 
 export default function ProtectedRoute({ children }) {
-  
-  const { user } = useAuth();
+  const { user, loading } = useAuth();
+  const location = useLocation();
 
-  // if (!user) return <Navigate to="/login" replace />;
+  if (loading) {
+    return <div>Loading...</div>; // Replace with your spinner component
+  }
+
+  if (!user) {
+    return <Navigate to="/login" replace state={{ from: location }} />;
+  }
 
   return children;
 }

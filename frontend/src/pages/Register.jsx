@@ -1,22 +1,21 @@
-import { useState } from "react";
-import axios from "axios";
+import { useState, useEffect } from "react";
 import api from "../api/axios";
-// import { useDispatch } from 'react-redux';
-// import { login } from '../features/auth/authSlice';
 import { Link, useNavigate } from "react-router-dom";
+import { useAuth } from "../context/AuthContext";
 
 export default function Register() {
-  //   const dispatch = useDispatch();
   const navigate = useNavigate();
+  const { user, loading, fetchUser } = useAuth();
 
-  const [form, setForm] = useState({
-    name: "",
-    email: "",
-    password: "",
-    // confirmPassword: ''
-  });
-
+  const [form, setForm] = useState({ name: "", email: "", password: "" });
   const [error, setError] = useState({});
+
+  // ✅ Restrict if already logged in
+  useEffect(() => {
+    if (!loading && user) {
+      navigate("/account", { replace: true });
+    }
+  }, [user, loading, navigate]);
 
   const handleChange = (e) => {
     setForm((prev) => ({
@@ -27,67 +26,41 @@ export default function Register() {
 
   const validateForm = () => {
     const newErrors = {};
-
-    if (!form.name) {
-      newErrors.name = "Name is required";
-    }
-
+    if (!form.name) newErrors.name = "Name is required";
     if (!form.email) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(form.email)) {
       newErrors.email = "Email is invalid";
     }
-
     if (!form.password) {
       newErrors.password = "Password is required";
-    } else if (!form.password.length >= 6) {
+    } else if (form.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters";
     }
-    // else if (
-    //   !/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).{8,}$/.test(formData.password)
-    // ) {
-    //   newErrors.password =
-    //     "Must contain uppercase, number, special char, min 8 chars";
-    // }
-
-    // if (!form.confirmPassword) {
-    //   newErrors.confirmPassword = "Confirm password is required";
-    // } else if (form.password !== form.confirmPassword) {
-    //   newErrors.confirmPassword = "Passwords do not match";
-    // }
-
     setError(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-
-    if (!validateForm()) {
-      return;
-    }
+    if (!validateForm()) return;
 
     try {
       const response = await api.post("/user/signup", form);
 
       if (response.status === 200) {
-        // Store token for authenticated requests later
         localStorage.setItem("token", response.data.token);
-        // dispatch(login({ name: form.name, email: form.email }));
-        alert("Registration Successful");
-        navigate("/login");
+        await fetchUser();
+        navigate("/account", { replace: true });
       }
     } catch (err) {
-      console.error(
-        "Registration failed:",
-        err.response?.data?.message ?? err.message
-      );
-      // Optionally show an alert or set an error state:
-      alert(
-        `Registration failed: ${err.response?.data?.message ?? err.message}`
-      );
+      const msg = err.response?.data?.message ?? err.message;
+      setError({ server: msg });
     }
   };
+
+  // While checking if logged in
+  if (loading) return <div>Loading...</div>;
 
   return (
     <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded shadow">
@@ -101,7 +74,6 @@ export default function Register() {
             value={form.name}
             onChange={handleChange}
             className="w-full p-2 border rounded mt-1"
-            required
           />
           {error.name && <p className="text-red-500 text-sm">{error.name}</p>}
         </div>
@@ -114,7 +86,6 @@ export default function Register() {
             value={form.email}
             onChange={handleChange}
             className="w-full p-2 border rounded mt-1"
-            required
           />
           {error.email && <p className="text-red-500 text-sm">{error.email}</p>}
         </div>
@@ -127,24 +98,15 @@ export default function Register() {
             value={form.password}
             onChange={handleChange}
             className="w-full p-2 border rounded mt-1"
-            required
           />
           {error.password && (
             <p className="text-red-500 text-sm">{error.password}</p>
           )}
         </div>
 
-        {/* <div>
-          <label className="block text-sm font-medium">Confirm Password</label>
-          <input
-            type="password"
-            name="confirmPassword"
-            value={form.confirmPassword}
-            onChange={handleChange}
-            className="w-full p-2 border rounded mt-1"
-            required
-          />
-        </div> */}
+        {error.server && (
+          <p className="text-red-500 text-sm">{error.server}</p>
+        )}
 
         <button
           type="submit"

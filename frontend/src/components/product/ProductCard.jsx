@@ -10,13 +10,14 @@ export const ProductCard = ({ product }) => {
 
   // const {id, name, new_price, old_price, image} = product
   return (
-    <div className="productCard rounded-md shadow-md p-4 relative group bg-background">
+    <div className="productCard rounded-md shadow-md p-4 relative group bg-card">
       <Link to={`/product/${product._id}`}>
-        <div className="flex justify-center relative">
+        <div className="flex justify-center relative rounded-lg bg-background">
           <img
             onClick={() => window.scrollTo(0, 0)}
             src={`http://localhost:3000/${product.images?.[0]?.url}`}
             alt=""
+            className="rounded-lg"
           />
           {product.on_sale && (
             <div className="absolute top-0 right-0 bg-red-500 text-white px-2 py-1 uppercase rounded-bl-lg text-xs">

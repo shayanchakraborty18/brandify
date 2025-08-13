@@ -4,12 +4,12 @@ import Footer from '../components/common/Footer';
 
 export default function SiteLayout() {
   return (
-    <>
+    <div className="flex flex-col h-screen">
       <Navbar />
-      <main className="min-h-screen section-gap">
+      <main className="flex-1 section-gap">
         <Outlet />
       </main>
       <Footer />
-    </>
+    </div>
   );
 }

@@ -33,7 +33,7 @@ export default function App() {
         </Route>
 
         {/* Auth pages */}
-        <Route element={<AuthLayout />}>
+        <Route element={<SiteLayout />}>
           {authRoutes.map(({ path, element }) => (
             <Route key={path} path={path} element={element} />
           ))}

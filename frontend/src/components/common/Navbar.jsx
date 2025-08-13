@@ -1,30 +1,37 @@
 import React, { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
-import cartIcon from "../../assets/icons/bag-shopping-solid.svg";
-import usericon from "../../assets/icons/user-solid.svg";
-import { MdColorLens } from "react-icons/md";
+// import cartIcon from "../../assets/icons/bag-shopping-solid.svg";
+// import usericon from "../../assets/icons/user-solid.svg";
+// import { MdColorLens } from "react-icons/md";
 import {
   FaBars,
   FaMobileAlt,
   FaHeadphones,
   FaTabletAlt,
   FaLaptop,
-  FaCamera,
+  FaUser,
   FaTv,
   FaMouse,
+  FaShoppingBag,
 } from "react-icons/fa";
+import { MdDeviceHub, MdOutlineDevicesOther } from "react-icons/md";
+import { MdOutlineColorLens } from "react-icons/md";
 import { BsPrinter } from "react-icons/bs";
 import { BsSmartwatch, BsSpeaker } from "react-icons/bs";
 import { useShop } from "../../context/ShopContext";
 
 import { useCart } from "../../context/CartContext";
+import { useTheme } from "../../context/ThemeContext";
 import ThemeSelector from "../../theme/ThemeSelector.jsx";
+import { useAuth } from "../../context/AuthContext";
+import { Brand } from "./Brand.jsx";
 
 export default function Navbar() {
+  const { user } = useAuth();
   const [showmenu, setShowmenu] = useState(true);
   const [keyword, setKeyword] = useState("");
   const [searchProduct, setSearchProduct] = useState([]);
-  const [showThemeSelector, setShowThemeSelector] = useState(false);
+  const { showThemeSelector, setShowThemeSelector } = useTheme();
 
   const { getSearchproducts } = useShop();
 
@@ -45,18 +52,43 @@ export default function Navbar() {
 
   const totalItems = cartItem.reduce((total, item) => total + item.quantity, 0);
   return (
-    <>
-      <div className="bg-primary/10 text-text border-b border-primary/20">
+    <header className="bg-background relative">
+      <div className="bg-secondary text-text border-b border-primary/30">
         <div className="container mx-auto px-4">
-          <div className="flex justify-between items-center py-4">
-            <div className="text-2xl font-bold">
-              <Link to="/">
-                <h1 className="font-bold">
-                  Brand<span className="text-primary">ify</span>
-                </h1>
+          <div className="flex justify-between items-center py-4 flex-wrap">
+            <div className="flex items-center order-1">
+              <Brand />
+            </div>
+
+            <div className="flex items-center gap-6 relative order-2 lg:order-3">
+              <MdOutlineColorLens
+                onClick={() => setShowThemeSelector(!showThemeSelector)}
+                className="text-card"
+                size={24}
+              />
+              {showThemeSelector && (
+                <div className="absolute top-12 left-0 bg-background border border-primary/30 z-10">
+                  <div className="text-xs font-bold p-2 pb-0 uppercase">
+                    Select Theme
+                  </div>
+                  <ThemeSelector />
+                </div>
+              )}
+              <Link to={user ? "/account" : "/login"}>
+                {/* <img width={20} color="text-card" src={usericon} alt="User" /> */}
+                <FaUser className="text-card" size={20} />
+              </Link>
+              <Link to="/cart">
+                <div className="relative">
+                  <FaShoppingBag className="text-card" size={20} />
+                  {/* <img width={20} src={cartIcon} alt="Cart" /> */}
+                  <span className="badge absolute -top-1 -right-2 min-w-3.5 h-3.5 px-0.5 bg-tertiary text-card rounded-md flex items-center justify-center text-xs leading-0">
+                    {totalItems}
+                  </span>
+                </div>
               </Link>
             </div>
-            <div className="relative">
+            <div className="relative order-3 mt-4 lg:mt-0 w-full lg:w-auto lg:order-2">
               <div className="productFindBox text-base bg-background border rounded flex border-primary/30">
                 <div className="flex items-stretch">
                   <button
@@ -66,49 +98,27 @@ export default function Navbar() {
                     <FaBars className="text-primary" size={18} />
                   </button>
                   <Link
-                    className="p-2 bg-primary/15 border-r border-primary/30"
+                    className="p-2 bg-primary/15 border-r border-primary/30 flex items-center gap-1"
                     to={"/products"}
                   >
-                    All Products
+                    All <span className="hidden lg:inline">Products</span>
                   </Link>
                 </div>
 
                 <input
                   type="text"
                   placeholder="Search product here"
-                  className="p-2 min-w-[300px]"
+                  className="p-2 w-full lg:min-w-[300px]"
                   value={keyword}
                   onChange={(e) => setKeyword(e.target.value)}
                 />
               </div>
             </div>
-
-            <div className="flex items-center gap-6 relative">
-              {/* <button className="btn btn-outline btn-primary">Login</button> */}
-              <MdColorLens size={28} className="cursor-pointer" onClick={() => setShowThemeSelector(!showThemeSelector)} />
-              {showThemeSelector && (
-                <div className="absolute top-12 left-0 bg-background border border-primary/30 z-10">
-                  <div className="text-xs font-bold p-2 pb-0 uppercase">Select Theme</div>
-                  <ThemeSelector />
-                </div>
-              )}
-              <Link to="/login">
-                <img width={20} src={usericon} alt="User" />
-              </Link>
-              <Link to="/cart">
-                <div className="relative">
-                  <img width={20} src={cartIcon} alt="Cart" />
-                  <span className="badge absolute -top-1 -right-2 min-w-3.5 h-3.5 px-0.5 bg-primary text-white rounded-md flex items-center justify-center text-xs leading-0">
-                    {totalItems}
-                  </span>
-                </div>
-              </Link>
-            </div>
           </div>
         </div>
       </div>
       {showmenu && (
-        <div className="bg-primary/20 border-b border-primary/20">
+        <div className="bg-primary/30 border-b border-primary/30">
           <div className="container mx-auto px-4">
             <div className="overflow-x-auto">
               <ul className="flex items-center justify-center gap-[1px] uppercase text-sm min-w-max">
@@ -189,29 +199,51 @@ export default function Navbar() {
           </div>
         </div>
       )}
-      <div className="bg-primary/40 absolute left-0 right-0 z-20">
+      <div className="bg-text/40 absolute left-0 right-0 z-20">
         <div className="container mx-auto px-4">
           <div className="overflow-x-auto">
-            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-2">
+            {/* <div className="grid grid-cols-2 sm:grid-cols-3 md:grid-cols-6 lg:grid-cols-8 gap-4">
               {searchProduct.map((item) => (
                 <div
                   key={item._id}
                   onClick={() => setKeyword("")}
-                  className="border border-primary/20 rounded bg-background overflow-hidden my-2"
+                  className="border border-primary/30 rounded bg-background overflow-hidden my-4"
                 >
                   <Link to={`/product/${item._id}`}>
                     <img
-                      width={200}
+                      width={150}
                       src={`http://localhost:3000/${item.images[0].url}`}
                     />
                   </Link>
-                  <p className="p-2">{item.name}</p>
+                  <p className="p-2 text-text text-sm text-center">{item.name}</p>
                 </div>
               ))}
+            </div> */}
+
+            <div className="overflow-x-auto lg:overflow-x-auto">
+              <div className="flex lg:flex-nowrap gap-4">
+                {searchProduct.map((item) => (
+                  <div
+                    key={item._id}
+                    onClick={() => setKeyword("")}
+                    className="border border-primary/30 rounded bg-background overflow-hidden my-4 min-w-[150px]"
+                  >
+                    <Link to={`/product/${item._id}`}>
+                      <img
+                        width={150}
+                        src={`http://localhost:3000/${item.images[0].url}`}
+                      />
+                    </Link>
+                    <p className="p-2 text-text text-sm text-center">
+                      {item.name}
+                    </p>
+                  </div>
+                ))}
+              </div>
             </div>
           </div>
         </div>
       </div>
-    </>
+    </header>
   );
 }

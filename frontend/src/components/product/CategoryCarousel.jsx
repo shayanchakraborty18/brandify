@@ -2,7 +2,6 @@ import { Swiper, SwiperSlide } from "swiper/react";
 import { Navigation } from "swiper/modules";
 import "swiper/css";
 import "swiper/css/navigation";
-import { ProductCard } from "./ProductCard";
 import { Link } from "react-router-dom";
 
 export const CategoryCarousel = ({ title, categorylList, maxItem = 4 }) => {
@@ -29,7 +28,7 @@ export const CategoryCarousel = ({ title, categorylList, maxItem = 4 }) => {
         >
           {categorylList.map((category) => (
             <SwiperSlide key={category._id}>
-              <Link className="w-40 flex flex-col items-center" to={`/products/${category.categorySlug}`}>
+              <Link onClick={() => window.scrollTo(0, 0)} className="w-40 flex flex-col items-center" to={`/products/${category.categorySlug}`}>
                 <div className="w-40 h-40 object-cover rounded-md mb-2">
                   <img
                     src={category.image.url}
@@ -37,7 +36,7 @@ export const CategoryCarousel = ({ title, categorylList, maxItem = 4 }) => {
                     className="w-40 h-40 object-cover rounded-md"
                   />
                 </div>
-                <h3 className="text-xl font-semibold text-center">{category.name}</h3>
+                <h4 className="text-lg font-semibold text-center">{category.name}</h4>
                 
               </Link>
             </SwiperSlide>
@@ -45,11 +44,6 @@ export const CategoryCarousel = ({ title, categorylList, maxItem = 4 }) => {
         </Swiper>
       </div>
 
-      {/* <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-4 lg:gap-6">
-        {productlList.map((product) => (
-          <ProductCard key={product._id} product={product} />
-        ))}
-      </div> */}
     </div>
   );
 };

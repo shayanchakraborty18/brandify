@@ -9,17 +9,16 @@ export const Relatedproducts = ({ currentProduct }) => {
   const [products, setProducts] = useState([]);
   const { getCategory } = useShop();
 
-  // console.log(productCat)
+  console.log(productCat)
 
   useEffect(() => {
-    const getRelProducts = async () => {
+    ( async () => {
       const matchdata = await getCategory(productCat);
-      const firstfour = matchdata
+      const showRelated = matchdata
         .filter((item) => item._id !== currentproductid)
         .slice(0, 8);
-      setProducts(firstfour);
-    };
-    getRelProducts();
+      setProducts(showRelated);
+    })();
   }, [currentProduct]);
 
   // console.log(products)

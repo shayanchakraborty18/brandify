@@ -30,7 +30,7 @@ const Home = () => {
 
       {/* <ProductGrid gridTitle='new arrivals' productlList={products} /> */}
       <div className="container mx-auto px-4">
-        <div className="section-gap">
+        <div className="section-gap mb-8 lg:mb-12">
           <CategoryCarousel categorylList={categorys} title={'Categories'} maxItem={7} />
           <ProductGrid
           gridTitle="Best Selling Products"

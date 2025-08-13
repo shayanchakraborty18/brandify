@@ -1,6 +1,7 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   getAllCategory,
+  getAllOrders,
   getAllProducts,
   getBestSeller,
   getfeaturedProduct,
@@ -95,6 +96,15 @@ export const ShopContextProvider = ({ children }) => {
     }
   };
 
+  const getAllPlacedOrders = async () => {
+    try {
+      const res = await getAllOrders();
+      return res.data.orders;
+    } catch (err) {
+      console.error("Error getting all orders", err);
+    }
+  };
+
   useEffect(() => {
     bestSellerProducts();
     fetchAllProducts();
@@ -110,7 +120,8 @@ export const ShopContextProvider = ({ children }) => {
         getCategory,
         getSearchproducts,
         getFeaturedProducts,
-        getAllCategorys
+        getAllCategorys,
+        getAllPlacedOrders,
       }}
     >
       {children}

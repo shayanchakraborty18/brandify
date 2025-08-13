@@ -1,28 +1,28 @@
-import { useState } from "react";
-import api from '../api/axios'
-// import { useDispatch } from 'react-redux';
-import { Link, useNavigate } from "react-router-dom";
-// import { login } from '../features/auth/authSlice'; // action from authSlice
-import { useAuth } from '../context/AuthContext';
+// pages/Login.jsx
+import { useEffect, useState } from "react";
+import { Link, useNavigate, useLocation } from "react-router-dom";
+import api from "../api/axios";
+import { useAuth } from "../context/AuthContext";
+import Input from "../components/inputs/Inputs";
 
 export default function Login() {
-  // const dispatch = useDispatch();
   const navigate = useNavigate();
-  const { fetchUser } = useAuth();
-
-  // Check auth on initial load
-  // useEffect(() => {
-    // fetchUser();
-  // }, []);
+  const location = useLocation();
+  const { user, fetchUser } = useAuth();
 
   const [form, setForm] = useState({ email: "", password: "" });
   const [error, setError] = useState({});
+  const [submitting, setSubmitting] = useState(false);
+
+  // If already logged in, redirect
+  useEffect(() => {
+    if (user) {
+      navigate("/account", { replace: true });
+    }
+  }, [user, navigate]);
 
   const handleChange = (e) => {
-    setForm((prev) => ({
-      ...prev,
-      [e.target.name]: e.target.value,
-    }));
+    setForm((prev) => ({ ...prev, [e.target.name]: e.target.value }));
   };
 
   const validateForm = () => {
@@ -30,97 +30,94 @@ export default function Login() {
     if (!form.email) {
       newErrors.email = "Email is required";
     } else if (!/\S+@\S+\.\S+/.test(form.email)) {
-      newErrors.email = "Email is invalid";
+      newErrors.email = "Invalid email format";
     }
-
     if (!form.password) {
       newErrors.password = "Password is required";
     } else if (form.password.length < 6) {
       newErrors.password = "Password must be at least 6 characters";
     }
-    // else if (
-    //   !/^(?=.*[A-Z])(?=.*[0-9])(?=.*[@#$%^&+=]).{8,}$/.test(formData.password)
-    // ) {
-    //   newErrors.password =
-    //     "Must contain uppercase, number, special char, min 8 chars";
-    // }
-
     setError(newErrors);
     return Object.keys(newErrors).length === 0;
   };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
+    if (!validateForm()) return;
 
-    if (!validateForm()) {
-      return;
-    }
-
+    setSubmitting(true);
     try {
-      const response = await api.post("/user/login",form);
+      const res = await api.post("/user/login", form);
 
-      if (response.status === 200) {
-        // Store token for authenticated requests later
-        // localStorage.setItem("token", response.data.token);
+      // Save token
+      localStorage.setItem("token", res.data.token);
+      api.defaults.headers.common["Authorization"] = `Bearer ${res.data.token}`;
 
-        navigate("/account");
-        alert("Login successful");
-        await fetchUser();
-        console.log(response.data)
-      }
+      // Fetch user before redirecting
+      await fetchUser();
+
+      const from = location.state?.from?.pathname || "/account";
+      navigate(from, { replace: true });
     } catch (err) {
-      console.error(
-        "Login failed:",
-        err.response?.data?.message ?? err.message
-      );
-      // Optionally show an alert or set an error state:
-      alert(`Login failed: ${err.response?.data?.message ?? err.message}`);
+      setError({ server: err.response?.data?.message || "Login failed" });
+    } finally {
+      setSubmitting(false);
     }
   };
 
   return (
-    <div className="max-w-md mx-auto mt-20 p-6 bg-white rounded shadow">
-      <h2 className="text-2xl font-bold mb-6 text-center">Login</h2>
-      <form onSubmit={handleSubmit} className="space-y-4 mb-4">
-        <div>
-          <label className="block text-sm font-medium">Email</label>
-          <input
-            type="email"
-            name="email"
-            value={form.email}
-            onChange={handleChange}
-            className="w-full p-2 border rounded mt-1"
-            required
-          />
-          {error.email && <p className="text-red-500 text-sm">{error.email}</p>}
+    <div className="container mx-auto px-4">
+      <div className="section-gap">
+        <div className="mt-12">
+          <h2 className="text-2xl font-semibold uppercase">Login</h2>
+          
+            <div className="max-w-md mx-auto p-6 bg-card rounded shadow">
+              {error.server && (
+                <p className="text-red-500 text-sm text-center">
+                  {error.server}
+                </p>
+              )}
+              <form onSubmit={handleSubmit} className="space-y-4 mb-4">
+                <div>
+                  <Input
+                    label={"Email"}
+                    type="email"
+                    name="email"
+                    value={form.email}
+                    onChange={handleChange}
+                  />
+                  {error.email && (
+                    <p className="text-red-500 text-sm">{error.email}</p>
+                  )}
+                </div>
+
+                <div>
+                  <Input
+                    label={"Password"}
+                    type="password"
+                    name="password"
+                    value={form.password}
+                    onChange={handleChange}
+                  />
+
+                  {error.password && (
+                    <p className="text-red-500 text-sm">{error.password}</p>
+                  )}
+                </div>
+
+                <button type="submit" disabled={submitting} className="btn">
+                  {submitting ? "Logging in..." : "Login"}
+                </button>
+              </form>
+
+              <p className="text-center">
+                Don't have an account? <Link to="/register">Register here</Link>
+              </p>
+              
+            </div>
+          
         </div>
-
-        <div>
-          <label className="block text-sm font-medium">Password</label>
-          <input
-            type="password"
-            name="password"
-            value={form.password}
-            onChange={handleChange}
-            className="w-full p-2 border rounded mt-1"
-            required
-          />
-          {error.password && (
-            <p className="text-red-500 text-sm">{error.password}</p>
-          )}
-        </div>
-
-        <button
-          type="submit"
-          className="w-full bg-blue-600 text-white p-2 rounded hover:bg-blue-700 transition"
-        >
-          Login
-        </button>
-      </form>
-
-      <p className="text-center">
-        Don't have an account? <Link to="/register">Register here</Link>
-      </p>
+      </div>
     </div>
   );
 }

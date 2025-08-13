@@ -3,14 +3,19 @@ import { useTheme } from "../context/ThemeContext"
 import { themes } from "./themes"
 
 export default function ThemeSelector() {
-  const { activeTheme, setActiveTheme } = useTheme()
+  const { activeTheme, setActiveTheme, setShowThemeSelector } = useTheme()
+
+  const handleSelect = (key) => {
+    setActiveTheme(key);
+    setShowThemeSelector(false);
+  };
 
   return (
     <div className="flex flex-col gap-2 p-2">
       {Object.keys(themes).map((key) => (
         <button
           key={key}
-          onClick={() => setActiveTheme(key)}
+          onClick={() => handleSelect(key)}
           className={`rounded px-3 py-1 text-sm border ${
             activeTheme === key ? "border-primary text-primary" : "border-gray-300"
           }`}
