@@ -11,30 +11,36 @@
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
 
-  /* Base theme colors */
-  --color-primary: #0466c8; 
-  
-  --color-light: #FFFFFF; 
+
+  --color-primary: #0466c8;
+  --color-light: #ffffff;
   --color-dark: #000000;
 
-  /* Mixing colors */
-   --color-background: color-mix(in srgb, var(--color-light) 98%, var(--color-primary) 2%); 
+  --color-background: #f8f8f8;
+  --color-background: color-mix(in srgb, var(--color-light) 98%, var(--color-primary) 2%);
+  
+  --color-text: #111111;
   --color-text: color-mix(in srgb, var(--color-dark) 85%, var(--color-light) 15%);
+
+  --color-secondary: #336699;
   --color-secondary: color-mix(in srgb, var(--color-text) 10%, var(--color-primary) 70%);
+
+  --color-card: #fafafa;
   --color-card: color-mix(in srgb, var(--color-light) 95%, var(--color-primary) 5%);
+
+  --color-tertiary: #555555;
   --color-tertiary: color-mix(in srgb, var(--color-dark) 50%, var(--color-primary) 50%);
 }
 
 @theme {
   --color-primary: var(--color-primary);
-  --color-light: var(--color-light); 
+  --color-light: var(--color-light);
   --color-dark: var(--color-dark);
   --color-background: var(--color-background);
   --color-text: var(--color-text);
   --color-secondary: var(--color-secondary);
   --color-card: var(--color-card);
   --color-tertiary: var(--color-tertiary);
-
 }
 
 a {
@@ -73,9 +79,15 @@ a:hover {
   @apply px-4 py-1 text-sm;
 }
 
-@media (prefers-color-scheme: light) {
+/* @media (prefers-color-scheme: light) {
   :root {
     @apply text-text bg-background;
+  }
+} */
+@media (prefers-color-scheme: light) {
+  :root {
+    color: var(--color-text);
+    background-color: var(--color-background);
   }
 }
 .swiper-button-prev, .swiper-button-next {
