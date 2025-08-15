@@ -47,7 +47,7 @@ server.use(errorHandlerMiddleware);
 // console.log("__dirname: ", __dirname);
 
 
-if(process.env.NODE_ENV === 'PRODUCTION') {
+// if(process.env.NODE_ENV === 'PRODUCTION') {
 	server.use("/static", express.static(path.join(__dirname, '/public')));
 
 	server.use(express.static(path.join(__dirname, '../frontend/dist')));
@@ -55,6 +55,6 @@ if(process.env.NODE_ENV === 'PRODUCTION') {
 	server.get(/^(.*)$/, (req, res) => {
 		res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
 	})
-}
+// }
 
 export default server;
