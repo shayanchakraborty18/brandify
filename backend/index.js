@@ -20,8 +20,6 @@ const __dirname = path.dirname(__filename);
 
 const server = express();
 
-server.use("/static", express.static(path.join(__dirname, "backend/public")));
-
 server.use(cors({
 	origin: ["https://brandify-8mm5.onrender.com", "http://localhost:5173"],
 	credentials: true
@@ -45,19 +43,19 @@ server.use("/api/brandify/order", orderRoutes);
 // errorHandlerMiddleware 
 server.use(errorHandlerMiddleware);
 
-server.use(express.static(path.join(__dirname, 'frontend/dist')));
+console.log("process.cwd(): ", process.cwd());
+console.log("__dirname: ", __dirname);
 
-server.get(/^(.*)$/, (req, res) => {
-	res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
-});
 
-// server.use("/static", express.static(path.join(process.cwd(), 'backend/public')));
 
 // if(process.env.NODE_ENV === 'PRODUCTION') {
-	
+	server.use("/static", express.static(path.join(__dirname, '/public')));
 
+	server.use(express.static(path.join(__dirname, '../frontend/dist')));
 
-	
+	server.get(/^(.*)$/, (req, res) => {
+		res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
+	})
 // }
 
 export default server;
