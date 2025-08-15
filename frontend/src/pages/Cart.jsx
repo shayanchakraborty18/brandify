@@ -2,6 +2,7 @@ import React from "react";
 import { useCart } from "../context/CartContext";
 import { StarRating } from "../components/common/StarRating";
 import { Link } from "react-router-dom";
+import { IMAGE_PATH } from "../utils/constants";
 
 export default function Cart() {
   const { cartItem, removeFromCart } = useCart();
