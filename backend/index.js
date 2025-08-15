@@ -15,9 +15,12 @@ import swagger from "swagger-ui-express";
 import productRoutes from "./src/product/routes/product.routes.js";
 import userRoutes from "./src/user/routes/user.routes.js";
 import orderRoutes from "./src/order/routes/order.routes.js";
-
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
 
 const server = express();
+
+server.use("/static", express.static(path.join(__dirname, "backend/public")));
 
 server.use(cors({
 	origin: ["https://brandify-8mm5.onrender.com", "http://localhost:5173"],
@@ -42,16 +45,19 @@ server.use("/api/brandify/order", orderRoutes);
 // errorHandlerMiddleware 
 server.use(errorHandlerMiddleware);
 
-server.use("/static", express.static(path.join(process.cwd(), 'backend/public')));
+server.use(express.static(path.join(__dirname, 'frontend/dist')));
+
+server.get(/^(.*)$/, (req, res) => {
+	res.sendFile(path.join(__dirname, 'frontend/dist/index.html'));
+});
+
+// server.use("/static", express.static(path.join(process.cwd(), 'backend/public')));
 
 // if(process.env.NODE_ENV === 'PRODUCTION') {
-	const __filename = fileURLToPath(import.meta.url);
-	const __dirname = path.dirname(__filename);
-	server.use(express.static(path.join(__dirname, '../frontend/dist')));
+	
 
-	server.get(/^(.*)$/, (req, res) => {
-		res.sendFile(path.join(__dirname, '../frontend/dist/index.html'));
-	})
+
+	
 // }
 
 export default server;
