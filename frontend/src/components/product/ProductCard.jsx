@@ -2,6 +2,7 @@ import React from "react";
 import { Link } from "react-router-dom";
 import { AddToCart } from "./AddToCart";
 import { StarRating } from "../common/StarRating";
+import { IMAGE_PATH } from "../../utils/constants";
 
 export const ProductCard = ({ product }) => {
   // console.log(product.images?.[0]?.url)
@@ -15,7 +16,7 @@ export const ProductCard = ({ product }) => {
         <div className="flex justify-center relative rounded-lg bg-background">
           <img
             onClick={() => window.scrollTo(0, 0)}
-            src={`http://localhost:3000/${product.images?.[0]?.url}`}
+            src={`${IMAGE_PATH}/${product.images?.[0]?.url}`}
             alt=""
             className="rounded-lg"
           />

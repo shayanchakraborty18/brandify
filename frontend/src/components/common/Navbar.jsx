@@ -25,6 +25,7 @@ import { useTheme } from "../../context/ThemeContext";
 import ThemeSelector from "../../theme/ThemeSelector.jsx";
 import { useAuth } from "../../context/AuthContext";
 import { Brand } from "./Brand.jsx";
+import { IMAGE_PATH } from "../../utils/constants.js";
 
 export default function Navbar() {
   const { user } = useAuth();
@@ -212,7 +213,7 @@ export default function Navbar() {
                   <Link to={`/product/${item._id}`}>
                     <img
                       width={150}
-                      src={`http://localhost:3000/${item.images[0].url}`}
+                      src={`${IMAGE_PATH}/${item.images[0].url}`}
                     />
                   </Link>
                   <p className="p-2 text-text text-sm text-center">{item.name}</p>
@@ -231,7 +232,7 @@ export default function Navbar() {
                     <Link to={`/product/${item._id}`}>
                       <img
                         width={150}
-                        src={`http://localhost:3000/${item.images[0].url}`}
+                        src={`${IMAGE_PATH}/${item.images[0].url}`}
                       />
                     </Link>
                     <p className="p-2 text-text text-sm text-center">

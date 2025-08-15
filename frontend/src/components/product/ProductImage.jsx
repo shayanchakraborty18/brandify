@@ -1,4 +1,5 @@
 import React, { useState, useEffect } from "react";
+import { IMAGE_PATH } from "../../utils/constants";
 
 export const ProductImage = ({ product }) => {
   const [mainImg, setMainImg] = useState("");
@@ -26,7 +27,7 @@ export const ProductImage = ({ product }) => {
             onClick={() => setMainImg(item.url)}
           >
             <img
-              src={`http://localhost:3000/${item.url}`}
+              src={`${IMAGE_PATH}/${item.url}`}
               className="w-full h-auto object-cover rounded-lg cursor-pointer hover:shadow-lg"
             />
           </div>
@@ -35,7 +36,7 @@ export const ProductImage = ({ product }) => {
 
       <div className="flex-1 relative">
         <img
-          src={`http://localhost:3000/${mainImg}`}
+          src={`${IMAGE_PATH}/${mainImg}`}
           alt={product.name}
           className="w-full h-auto object-cover rounded-lg"
         />

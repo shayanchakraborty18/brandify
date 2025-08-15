@@ -5,11 +5,11 @@
   "main": "server.js",
   "scripts": {
     "start": "node backend/server.js",
-    "dev": "SET NODE_EVE=DEVELOPMENT& nodemon backend/server.js",
-    "prod": "SET NODE_ENV=PRODUCTION& nodemon backend/server.js",
+    "dev": "NODE_ENV=DEVELOPMENT && nodemon backend/server.js",
+    "prod": "NODE_ENV=PRODUCTION && node backend/server.js",
     "client": "cd frontend && npm install && npm run build",
     "server": "npm install",
-    "deploy": "npm run client && npm run server"
+    "deploy": "npm run client && npm run server && npm run prod"
   },
   "keywords": [],
   "author": "Shayan",
