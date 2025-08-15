@@ -9,7 +9,7 @@
     "prod": "NODE_ENV=PRODUCTION && node backend/server.js",
     "client": "cd frontend && npm install && npm run build",
     "server": "npm install",
-    "deploy": "npm run client && npm run server && npm run prod"
+    "deploy": "npm run client && npm run server && NODE_ENV=PRODUCTION"
   },
   "keywords": [],
   "author": "Shayan",
