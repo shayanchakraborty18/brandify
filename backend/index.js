@@ -15,6 +15,7 @@ import swagger from "swagger-ui-express";
 import productRoutes from "./src/product/routes/product.routes.js";
 import userRoutes from "./src/user/routes/user.routes.js";
 import orderRoutes from "./src/order/routes/order.routes.js";
+import commonRoutes from "./src/user/routes/common.routes.js";
 const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 
@@ -38,6 +39,7 @@ server.get("/api/test", (req, res) => {
 server.use("/api/brandify/user", userRoutes);
 server.use("/api/brandify/product", productRoutes);
 server.use("/api/brandify/order", orderRoutes);
+server.use("/api/brandify/common", commonRoutes);
 
 
 // errorHandlerMiddleware 

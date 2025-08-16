@@ -1,22 +1,22 @@
 // Import the necessary modules here
 import nodemailer from "nodemailer";
 
-export const sendWelcomeEmail = async (user) => {
-	// Write your code here
-	const transporter = nodemailer.createTransport({
-		host: "sandbox.smtp.mailtrap.io",
-		port: 2525,
-		auth: {
-			user: process.env.SMPT_MAIL_USERNAME,
-			pass: process.env.SMPT_MAIL_PASSWORD,
-		},
-	});
+export const contactMail = async (name, email) => {
+  // Write your code here
+  const transporter = nodemailer.createTransport({
+    host: "sandbox.smtp.mailtrap.io",
+    port: 2525,
+    auth: {
+      user: process.env.SMPT_MAIL_USERNAME,
+      pass: process.env.SMPT_MAIL_PASSWORD,
+    },
+  });
 
-	const mailOptions = {
-		from: "info@abc.com",
-		to: user.email,
-		subject: "Welcome to Brandify",
-		html: `
+  const mailOptions = {
+    from: "info@abc.com",
+    to: email,
+    subject: "Thank you for contacting us",
+    html: `
 <!DOCTYPE html>
 <html lang="en">
   <head>
@@ -77,24 +77,23 @@ export const sendWelcomeEmail = async (user) => {
           src="../../public/images/logo1-32230.png"
           alt="Brandify Logo"
         />
-        <h1>Welcome To Brandify</h1>
+        <h1> Contact Us </h1>
       </div>
       <div class="content">
-        <p>Hello, ${user.name}</p>
+        <p>Hello, ${name}</p>
         <p>
-          Thank you for registering with Brandify. We are excited to have you
-          as new member of our community.
+          Thank you for reaching out to us. We appreciate your interest in our services.
+          Our team will get back to you as soon as possible.
         </p>
-        <p><a class="button" href="https://brandify-8mm5.onrender.com/login">Get Started</a></p>
       </div>
     </div>
   </body>
 </html>`,
-	};
+  };
 
-	try {
-		await transporter.sendMail(mailOptions);
-	} catch (err) {
-		console.log("Error : Unable to Send Welcome Email\n" + err);
-	}
+  try {
+    await transporter.sendMail(mailOptions);
+  } catch (err) {
+    console.log("Error : Unable to Send Welcome Email\n" + err);
+  }
 };

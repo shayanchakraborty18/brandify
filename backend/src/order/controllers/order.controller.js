@@ -9,6 +9,7 @@ import {
 	updateOrderRepo
 } from "../model/order.repository.js";
 import { ErrorHandler } from "../../../utils/errorHandler.js";
+import { orderPlaced } from "../../../utils/emails/orderPlaced.js";
 
 export const createNewOrder = async (req, res, next) => {
 	// Write your code here for placing a new order
@@ -18,6 +19,7 @@ export const createNewOrder = async (req, res, next) => {
 		orderData.user = userId;
 		orderData.paidAt = new Date().toISOString();
 		const newOrder = await createNewOrderRepo(orderData);
+		await orderPlaced(req.user);
 		res.status(200).json({success: true, order: newOrder});
 	} catch (error) {
 		next(new ErrorHandler(400, error.message));

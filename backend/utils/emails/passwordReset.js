@@ -5,8 +5,8 @@ export const sendPasswordResetEmail = async (user, resetPasswordURL) => {
     host: "sandbox.smtp.mailtrap.io",
     port: 2525,
     auth: {
-      user: process.env.STORFLEET_SMPT_MAIL,
-      pass: process.env.STORFLEET_SMPT_MAIL_PASSWORD,
+      user: process.env.SMPT_MAIL_USERNAME,
+      pass: process.env.SMPT_MAIL_PASSWORD,
     },
   });
 
