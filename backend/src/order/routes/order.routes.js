@@ -7,6 +7,7 @@ import {
 	updateOrder
 } from "../controllers/order.controller.js";
 import { auth, authByUserRole } from "../../../middlewares/auth.js";
+import { processPayment, sendStripeApiKey } from "../controllers/payment.controller.js";
 
 const router = express.Router();
 
@@ -21,5 +22,10 @@ router.route("/orders/placed").get(auth, authByUserRole("admin"), getAllOrders);
 
 //put admin
 router.route("/update/:id").put(auth, authByUserRole("admin"), updateOrder);
+
+
+//payment
+router.route("/payment/process").post(auth, processPayment);
+router.route("/payment/apikey").get(auth, sendStripeApiKey);
 
 export default router;

@@ -17,7 +17,6 @@ export const publicRoutes = [
   {path: "/products/:catname", element: <Products/>},
   { path: "/product/:id", element: <ProductDetail /> },
   { path: "/cart", element: <Cart/> },
-  { path: "/checkout", element: <Checkout /> },
 ];
 
 export const authRoutes = [
@@ -28,5 +27,6 @@ export const authRoutes = [
 export const privateRoutes = [
   { path: "/account", element: <Dashboard /> }, // `/account`
   { path: "/account/orders", element: <OrderHistory /> }, // `/account/orders`
+  // { path: "/checkout", element: <Checkout /> }
   
 ];

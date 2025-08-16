@@ -2,6 +2,7 @@
 import React, { createContext, useState, useEffect, useContext, useCallback } from "react";
 import api from "../api/axios";
 
+
 const AuthContext = createContext();
 
 export const AuthContextProvider = ({ children }) => {
@@ -47,6 +48,7 @@ export const AuthContextProvider = ({ children }) => {
       console.error("Logout failed:", error.response?.data || error.message);
     } finally {
       localStorage.removeItem("token");
+      
       delete api.defaults.headers.common["Authorization"];
       setUser(null);
     }

@@ -81,9 +81,15 @@ export default function Cart() {
                   <span>${totalValue + 10}</span>
                 </div>
               </div>
-              <button className="btn btn-primary w-full">
+              {/* <button className="btn btn-primary w-full">
                 Proceed to Checkout
-              </button>
+              </button> */}
+              <Link
+                to="/checkout"
+                className="btn btn-primary w-full"
+              >
+                Proceed to Checkout
+              </Link>
             </div>
           </div>
         ) : (
