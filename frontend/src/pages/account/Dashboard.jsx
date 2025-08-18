@@ -15,7 +15,7 @@ const Dashboard = () => {
 console.log(user);
   return (
     <div className="flex flex-col">
-      <h1 className="text-2xl font-bold mb-4">Welcome, {user.userDetails.name || user.userDetails.email}</h1>
+      <h1 className="text-2xl font-bold mb-4">Welcome, {user.name || user.email}</h1>
       <p className="text-gray-600 mb-6">
         Here’s an overview of your account details.
       </p>
@@ -23,8 +23,8 @@ console.log(user);
       <div className="grid grid-cols-1 sm:grid-cols-2 gap-6">
         <div className="bg-white shadow p-4 rounded-lg">
           <h2 className="text-lg font-semibold mb-2">Profile</h2>
-          <p><strong>Name:</strong> {user.userDetails.name || "N/A"}</p>
-          <p><strong>Email:</strong> {user.userDetails.email}</p>
+          <p><strong>Name:</strong> {user.name || "N/A"}</p>
+          <p><strong>Email:</strong> {user.email}</p>
         </div>
 
         <div className="bg-white shadow p-4 rounded-lg">

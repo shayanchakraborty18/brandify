@@ -4,6 +4,7 @@ import { Link, useNavigate, useLocation } from "react-router-dom";
 import api from "../api/axios";
 import { useAuth } from "../context/AuthContext";
 import Input from "../components/inputs/Inputs";
+import login_gate from '../assets/images/login_gate.svg'
 
 export default function Login() {
   const navigate = useNavigate();
@@ -67,11 +68,16 @@ export default function Login() {
 
   return (
     <div className="container mx-auto px-4">
-      <div className="section-gap">
-        <div className="mt-12">
-          <h2 className="text-2xl font-semibold uppercase">Login</h2>
-          
-            <div className="max-w-md mx-auto p-6 bg-card rounded shadow">
+      <div className="my-8 lg:my-12">
+        <div className="flex flex-col items-center">
+          <div className="max-w-[768px] w-full bg-card rounded shadow flex">
+            <div className="flex-1 flex flex-col items-center p-12 bg-primary/50 rounded-tl rounded-bl">
+              <img src={login_gate} alt="Brandify" className="w-2/3" />
+            </div>
+            <div className="w-xs p-6">
+              <h2 className="text-2xl font-semibold mb-2 text-center">
+                Log in
+              </h2>
               {error.server && (
                 <p className="text-red-500 text-sm text-center">
                   {error.server}
@@ -105,17 +111,22 @@ export default function Login() {
                   )}
                 </div>
 
-                <button type="submit" disabled={submitting} className="btn">
+                <button type="submit" disabled={submitting} className="btn w-full">
                   {submitting ? "Logging in..." : "Login"}
                 </button>
               </form>
 
-              <p className="text-center">
-                Don't have an account? <Link to="/register">Register here</Link>
+              <p className="text-center text-sm flex justify-between gap-2">
+                
+                <Link className="text-primary" to="/register">
+                  Create an Account
+                </Link>
+                <Link className="text-primary" to="/forgot-password">
+                  Forgot Password
+                </Link>
               </p>
-              
             </div>
-          
+          </div>
         </div>
       </div>
     </div>

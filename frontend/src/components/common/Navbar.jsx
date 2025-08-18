@@ -52,6 +52,8 @@ export default function Navbar() {
   const { cartItem } = useCart();
 
   const totalItems = cartItem.reduce((total, item) => total + item.quantity, 0);
+
+  
   return (
     <header className="bg-background relative">
       <div className="bg-secondary text-text border-b border-primary/30">
@@ -76,8 +78,11 @@ export default function Navbar() {
                 </div>
               )}
               <Link to={user ? "/account" : "/login"}>
-                {/* <img width={20} color="text-card" src={usericon} alt="User" /> */}
+              {user?.profileImg?.url && user.profileImg.url.startsWith("http") ? (
+                <img width={24} height={24} className="rounded-full" color="text-card" src={user.profileImg.url} alt="User" />
+              ) : (
                 <FaUser className="text-card" size={20} />
+              )}
               </Link>
               <Link to="/cart">
                 <div className="relative">

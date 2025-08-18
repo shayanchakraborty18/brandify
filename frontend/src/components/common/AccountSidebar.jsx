@@ -2,14 +2,19 @@
 import React from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/AuthContext";
+import { toast } from "react-toastify";
+import { useCart } from "../../context/CartContext";
 
 export const AccountSidebar = () => {
+    const { clearCart } = useCart();
   const { user, logout } = useAuth();
   const navigate = useNavigate();
 
   const handleLogout = async () => {
     try {
       await logout();
+      toast.success("Logout successful!");
+      clearCart();
       navigate("/login");
     } catch (error) {
       console.error("Logout error:", error);
@@ -23,7 +28,7 @@ export const AccountSidebar = () => {
       <div>
         <h2 className="text-lg mb-4">My Account</h2>
         <p className="text-sm text-gray-300">
-          Hello, {user?.userDetails.name}
+          Hello, {user?.name}
         </p>
       </div>
 

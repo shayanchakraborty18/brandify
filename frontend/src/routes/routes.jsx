@@ -8,6 +8,7 @@ import OrderHistory from "../pages/account/OrderHistory";
 import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import { AllProducts } from "../pages/AllProducts";
+import { OrderDetails } from "../pages/account/OrderDetails";
 
 
 // Exporting route config as arrays
@@ -25,8 +26,9 @@ export const authRoutes = [
 ];
 
 export const privateRoutes = [
-  { path: "/account", element: <Dashboard /> }, // `/account`
-  { path: "/account/orders", element: <OrderHistory /> }, // `/account/orders`
+  { path: "/account", element: <Dashboard /> }, 
+  { path: "/account/orders", element: <OrderHistory /> }, 
+  { path: "/account/order/:id", element: <OrderDetails /> }
   // { path: "/checkout", element: <Checkout /> }
   
 ];

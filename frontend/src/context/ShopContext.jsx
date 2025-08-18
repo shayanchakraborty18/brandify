@@ -1,13 +1,14 @@
 import React, { createContext, useContext, useEffect, useState } from "react";
 import {
   getAllCategory,
-  getAllOrders,
+  getmyOrders,
   getAllProducts,
   getBestSeller,
   getfeaturedProduct,
   getProductById,
   getProductCategory,
   getSearchproduct,
+  getOrderById,
 } from "../services/productService";
 
 const ShopContext = createContext();
@@ -96,14 +97,24 @@ export const ShopContextProvider = ({ children }) => {
     }
   };
 
-  const getAllPlacedOrders = async () => {
+  const getMyOrders = async () => {
     try {
-      const res = await getAllOrders();
+      const res = await getmyOrders();
       return res.data.orders;
     } catch (err) {
       console.error("Error getting all orders", err);
     }
   };
+
+  const getOrderDetails = async (id) => {
+    try {
+      const res = await getOrderById(id);
+      return res.data.order
+
+    } catch(err){
+      console.error("Error getting order details", err);
+    }
+  }
 
   useEffect(() => {
     bestSellerProducts();
@@ -121,7 +132,8 @@ export const ShopContextProvider = ({ children }) => {
         getSearchproducts,
         getFeaturedProducts,
         getAllCategorys,
-        getAllPlacedOrders,
+        getMyOrders,
+        getOrderDetails
       }}
     >
       {children}

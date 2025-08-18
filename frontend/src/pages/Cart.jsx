@@ -46,13 +46,13 @@ export default function Cart() {
                       </h4>
                       <StarRating rating={item.rating} />
                       <p className="text-sm text-gray-500 font-semibold">
-                        ${item.price} x {item.quantity}
+                        ₹{item.price} x {item.quantity}
                       </p>
                     </div>
                   </div>
                   <div className="text-right">
                     <p className="text-lg font-semibold text-gray-800">
-                      ${item.price * item.quantity}
+                      ₹{item.price * item.quantity}
                     </p>
                     <button
                       onClick={() => removeFromCart(item._id)}
@@ -70,15 +70,15 @@ export default function Cart() {
               <div className="space-y-2 text-gray-700 mb-6">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
-                  <span>${totalValue}</span>
+                  <span>₹{totalValue}</span>
                 </div>
                 <div className="flex justify-between">
                   <span>Shipping</span>
-                  <span>$10</span>
+                  <span>₹10</span>
                 </div>
                 <div className="border-t pt-4 flex justify-between text-xl font-bold border-text/20">
                   <span>Total</span>
-                  <span>${totalValue + 10}</span>
+                  <span>₹{totalValue + 10}</span>
                 </div>
               </div>
               {/* <button className="btn btn-primary w-full">

@@ -17,7 +17,7 @@
   --color-dark: #000000;
 
   --color-background: #f8f8f8;
-  --color-background: color-mix(in srgb, var(--color-light) 98%, var(--color-primary) 2%);
+  --color-background: color-mix(in srgb, var(--color-light) 92%, var(--color-primary) 8%);
   
   --color-text: #111111;
   --color-text: color-mix(in srgb, var(--color-dark) 85%, var(--color-light) 15%);
@@ -26,7 +26,7 @@
   --color-secondary: color-mix(in srgb, var(--color-text) 10%, var(--color-primary) 70%);
 
   --color-card: #fafafa;
-  --color-card: color-mix(in srgb, var(--color-light) 95%, var(--color-primary) 5%);
+  --color-card: color-mix(in srgb, var(--color-light) 99%, var(--color-primary) 1%);
 
   --color-tertiary: #555555;
   --color-tertiary: color-mix(in srgb, var(--color-dark) 50%, var(--color-primary) 50%);
@@ -60,7 +60,7 @@ a:hover {
 }
 
 .btn {
-  @apply border border-transparent rounded-md px-3 py-2 text-background bg-primary font-medium transition-all duration-300 hover:bg-background hover:text-primary hover:border-primary;
+  @apply border border-transparent rounded-md px-3 py-2 text-background bg-primary font-medium transition-all duration-300 hover:bg-background hover:text-primary hover:border-primary cursor-pointer;
 }
 
 .btn-primary {

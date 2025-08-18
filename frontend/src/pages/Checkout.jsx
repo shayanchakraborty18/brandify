@@ -1,7 +1,6 @@
 import React, { useState } from "react";
 import { useCart } from "../context/CartContext";
-import { ToastContainer, toast, Bounce } from 'react-toastify';
-import "react-toastify/dist/ReactToastify.css";
+import { toast } from 'react-toastify';
 import {
   useStripe,
   useElements,
@@ -126,7 +125,7 @@ export default function Checkout() {
         };
         const paylodad = {
           shippingInfo: shippingData,
-          orderItems: orderData,
+          orderedItems: orderData,
           paymentInfo: paymentInfo,
           itemsPrice: totalValue,
           taxPrice: 0,
@@ -294,7 +293,7 @@ export default function Checkout() {
                       </p>
                     </div>
                     <p className="font-semibold">
-                      ${item.price * item.quantity}
+                      ₹{item.price * item.quantity}
                     </p>
                   </div>
                 ))}
@@ -305,15 +304,15 @@ export default function Checkout() {
                 <div className="pt-4 border-t space-y-2">
                   <div className="flex justify-between">
                     <p>Subtotal</p>
-                    <p>${totalValue}</p>
+                    <p>₹{totalValue}</p>
                   </div>
                   <div className="flex justify-between">
                     <p>Shipping</p>
-                    <p>$10.00</p>
+                    <p>₹10.00</p>
                   </div>
                   <div className="flex justify-between font-bold text-lg">
                     <p>Total</p>
-                    <p>${totalValue + 10}</p>
+                    <p>₹{totalValue + 10}</p>
                   </div>
                 </div>
               </div>
@@ -321,19 +320,6 @@ export default function Checkout() {
           </div>
         </div>
       </div>
-       <ToastContainer
-        position="top-center"
-        autoClose={5000}
-        hideProgressBar={false}
-        newestOnTop={false}
-        closeOnClick={false}
-        rtl={false}
-        pauseOnFocusLoss
-        draggable
-        pauseOnHover
-        theme="light"
-        transition={Bounce}
-        />
     </div>
   );
 }

@@ -1,7 +1,12 @@
 // context/AuthContext.jsx
-import React, { createContext, useState, useEffect, useContext, useCallback } from "react";
+import React, {
+  createContext,
+  useState,
+  useEffect,
+  useContext,
+  useCallback,
+} from "react";
 import api from "../api/axios";
-
 
 const AuthContext = createContext();
 
@@ -16,7 +21,7 @@ export const AuthContextProvider = ({ children }) => {
   const fetchUser = useCallback(async () => {
     try {
       const res = await api.get("/user/details");
-      setUser(res.data);
+      setUser(res.data.userDetails);
     } catch (err) {
       setUser(null);
       console.error("User fetch failed:", err.response?.data || err.message);
@@ -48,9 +53,7 @@ export const AuthContextProvider = ({ children }) => {
       console.error("Logout failed:", error.response?.data || error.message);
     } finally {
       localStorage.removeItem("token");
-      
-      delete api.defaults.headers.common["Authorization"];
-      setUser(null);
+      setUser(null); // ✅ clear user state
     }
   };
 

@@ -4,7 +4,6 @@ const CartContext = createContext();
 
 export const CartContextProvider = ({ children }) => {
   const [cartItem, setCartItem] = useState(() => {
-    
     const storedCart = sessionStorage.getItem("cart");
     return storedCart ? JSON.parse(storedCart) : [];
   });
@@ -37,7 +36,9 @@ export const CartContextProvider = ({ children }) => {
   };
 
   return (
-    <CartContext.Provider value={{ cartItem, addToCart, removeFromCart, clearCart }}>
+    <CartContext.Provider
+      value={{ cartItem, addToCart, removeFromCart, clearCart }}
+    >
       {children}
     </CartContext.Provider>
   );
