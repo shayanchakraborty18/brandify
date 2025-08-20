@@ -12,7 +12,7 @@ const Dashboard = () => {
   if (!user) {
     return <div className="p-4 text-red-500">You are not logged in.</div>;
   }
-console.log(user);
+console.log(user.email);
   return (
     <div className="flex flex-col">
       <h1 className="text-2xl font-bold mb-4">Welcome, {user.name || user.email}</h1>

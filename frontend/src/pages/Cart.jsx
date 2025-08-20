@@ -22,8 +22,8 @@ export default function Cart() {
           <div className="mt-2 w-20 h-1 bg-primary mx-auto rounded"></div>
         </div>
         {cartItem.length > 0 ? (
-          <div className="flex gap-6">
-            <div className="rounded-md shadow-md p-4 relative bg-background flex-1">
+          <div className="flex gap-6 mb-12">
+            <div className="rounded-md shadow-md p-4 relative bg-card flex-1">
               {cartItem.map((item) => (
                 <div
                   key={item._id}
@@ -56,7 +56,7 @@ export default function Cart() {
                     </p>
                     <button
                       onClick={() => removeFromCart(item._id)}
-                      className="text-sm text-red-600 hover:underline mt-1"
+                      className="text-sm text-red-600 hover:underline mt-1 cursor-pointer"
                     >
                       Remove
                     </button>
@@ -65,9 +65,9 @@ export default function Cart() {
               ))}
             </div>
 
-            <div className="rounded-md shadow-md p-4 relative group bg-background w-96">
+            <div className="rounded-md shadow-md p-4 relative group bg-card w-96">
               <h3 className="text-lg font-bold mb-4 text-gray-800">Order Summary</h3>
-              <div className="space-y-2 text-gray-700 mb-6">
+              <div className="space-y-2 mb-6">
                 <div className="flex justify-between">
                   <span>Subtotal</span>
                   <span>₹{totalValue}</span>
@@ -81,17 +81,17 @@ export default function Cart() {
                   <span>₹{totalValue + 10}</span>
                 </div>
               </div>
-              {/* <button className="btn btn-primary w-full">
-                Proceed to Checkout
-              </button> */}
+              
               <Link
                 to="/checkout"
-                className="btn btn-primary w-full"
+                className="btn w-full flex justify-center uppercase"
               >
                 Proceed to Checkout
               </Link>
             </div>
+            
           </div>
+
         ) : (
           <div className="text-center">
             <p className="text-lg font-semibold mb-6">Your Cart is Empty</p>

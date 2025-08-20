@@ -9,6 +9,7 @@ import Cart from "../pages/Cart";
 import Checkout from "../pages/Checkout";
 import { AllProducts } from "../pages/AllProducts";
 import { OrderDetails } from "../pages/account/OrderDetails";
+import { Contact } from "../pages/contact";
 
 
 // Exporting route config as arrays
@@ -18,6 +19,7 @@ export const publicRoutes = [
   {path: "/products/:catname", element: <Products/>},
   { path: "/product/:id", element: <ProductDetail /> },
   { path: "/cart", element: <Cart/> },
+  { path: "/contact", element: <Contact/> },
 ];
 
 export const authRoutes = [
