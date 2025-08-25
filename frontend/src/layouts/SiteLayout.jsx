@@ -3,6 +3,7 @@ import Navbar from '../components/common/Navbar';
 import Footer from '../components/common/Footer';
 import { Bounce, ToastContainer } from 'react-toastify';
 import "react-toastify/dist/ReactToastify.css";
+import ThemeSelector from '../theme/ThemeSelector';
 
 export default function SiteLayout() {
   return (
@@ -25,6 +26,9 @@ export default function SiteLayout() {
         theme="light"
         transition={Bounce}
       />
+      <div className='fixed bottom-4 right-4'>
+        <ThemeSelector />
+      </div>
     </div>
   );
 }

@@ -1,6 +1,7 @@
 import React from "react";
 import Input from "../inputs/Inputs";
 import { Brand } from "./Brand";
+import { EmailSubscribe } from "./EmailSubscribe";
 
 export default function Footer() {
   return (
@@ -22,7 +23,7 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4 uppercase">Quick Links</h3>
             <ul className="space-y-2">
               <li>
-                <a href="#" className="hover:text-white">
+                <a href="/" className="hover:text-white">
                   Home
                 </a>
               </li>
@@ -32,12 +33,12 @@ export default function Footer() {
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white">
-                  Services
+                <a href="/products" className="hover:text-white">
+                  All Products
                 </a>
               </li>
               <li>
-                <a href="#" className="hover:text-white">
+                <a href="/contact" className="hover:text-white">
                   Contact
                 </a>
               </li>
@@ -72,24 +73,7 @@ export default function Footer() {
 
           <div>
             <h3 className="text-white font-semibold mb-4 uppercase">Subscribe</h3>
-            <form className="flex flex-col space-y-2">
-              <p className="text-sm">
-                Subscribe to our newsletter and get updates on new products and
-                discounts.
-              </p> 
-              <Input
-                // label="Email"
-                type="email"
-                placeholder="Enter your email"
-                name="email"
-              />
-              <button
-                type="submit"
-                className="btn btn-tertiary uppercase"
-              >
-                Subscribe
-              </button>
-            </form>
+            <EmailSubscribe />
           </div>
         </div>
 

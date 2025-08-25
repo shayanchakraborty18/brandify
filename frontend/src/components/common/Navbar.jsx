@@ -32,7 +32,7 @@ export default function Navbar() {
   const [showmenu, setShowmenu] = useState(true);
   const [keyword, setKeyword] = useState("");
   const [searchProduct, setSearchProduct] = useState([]);
-  const { showThemeSelector, setShowThemeSelector } = useTheme();
+  // const { showThemeSelector, setShowThemeSelector } = useTheme();
 
   const { getSearchproducts } = useShop();
 
@@ -64,7 +64,7 @@ export default function Navbar() {
             </div>
 
             <div className="flex items-center gap-6 relative order-2 lg:order-3">
-              <MdOutlineColorLens
+              {/* <MdOutlineColorLens
                 onClick={() => setShowThemeSelector(!showThemeSelector)}
                 className="text-card"
                 size={24}
@@ -76,10 +76,10 @@ export default function Navbar() {
                   </div>
                   <ThemeSelector />
                 </div>
-              )}
-              <Link to={user ? "/account" : "/login"}>
+              )} */}
+              <Link className="w-6 h-6" to={user ? "/account" : "/login"}>
               {user?.profileImg?.url && user.profileImg.url.startsWith("http") ? (
-                <img width={24} height={24} className="rounded-full" color="text-card" src={user.profileImg.url} alt="User" />
+                <img width={24} height={24} className="rounded-full w-6 h-6 object-cover" color="text-card" src={user.profileImg.url} alt="User" />
               ) : (
                 <FaUser className="text-card" size={20} />
               )}

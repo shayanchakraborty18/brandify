@@ -52,7 +52,7 @@ export default function ProductDetail() {
         <div className="productDetails bg-background">
           <Breadcrumb product={product} />
           <div className="container mx-auto px-4">
-            <div className="grid grid-cols-2 gap-8 my-6">
+            <div className="grid grid-cols-1 md:grid-cols-2 gap-8 my-6">
               <ProductImage product={product} />
               <div>
                 <ProductDetailsInfo product={product} />
@@ -95,7 +95,7 @@ export default function ProductDetail() {
           </div>
         </div>
         <Tabs product={product}/>
-        <div className="container mx-auto px-4">
+        <div className="container mx-auto px-4 mb-12">
           <Relatedproducts currentProduct={product} />
         </div>
       </div>

@@ -10,6 +10,8 @@ import Checkout from "../pages/Checkout";
 import { AllProducts } from "../pages/AllProducts";
 import { OrderDetails } from "../pages/account/OrderDetails";
 import { Contact } from "../pages/contact";
+import { ForgotPassword } from "../pages/ForgotPassword";
+import { ResetPassword } from "../pages/resetPassword";
 
 
 // Exporting route config as arrays
@@ -20,6 +22,8 @@ export const publicRoutes = [
   { path: "/product/:id", element: <ProductDetail /> },
   { path: "/cart", element: <Cart/> },
   { path: "/contact", element: <Contact/> },
+  {path: "/forgot-password", element: <ForgotPassword/>},
+  {path: "password/reset/:token", element: <ResetPassword/>}
 ];
 
 export const authRoutes = [

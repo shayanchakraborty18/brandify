@@ -1,4 +1,3 @@
-// context/AuthContext.jsx
 import React, {
   createContext,
   useState,
@@ -14,10 +13,7 @@ export const AuthContextProvider = ({ children }) => {
   const [user, setUser] = useState(null);
   const [loading, setLoading] = useState(true);
 
-  /**
-   * Fetch user details from backend
-   * Wrapped in useCallback so it's stable between renders
-   */
+
   const fetchUser = useCallback(async () => {
     try {
       const res = await api.get("/user/details");
@@ -30,9 +26,7 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, []);
 
-  /**
-   * Auto-fetch user on initial load if token exists
-   */
+
   useEffect(() => {
     const token = localStorage.getItem("token");
     if (token) {
@@ -43,17 +37,14 @@ export const AuthContextProvider = ({ children }) => {
     }
   }, [fetchUser]);
 
-  /**
-   * Logout
-   */
   const logout = async () => {
     try {
-      await api.get("/user/logout"); // Optional if backend clears cookie/session
+      await api.get("/user/logout");
     } catch (error) {
       console.error("Logout failed:", error.response?.data || error.message);
     } finally {
       localStorage.removeItem("token");
-      setUser(null); // ✅ clear user state
+      setUser(null); 
     }
   };
 

@@ -1,4 +1,4 @@
-// ThemeContext.jsx
+
 import { createContext, useContext, useEffect, useState } from "react"
 import { themes } from "../theme/themes"
 
@@ -6,7 +6,6 @@ const ThemeContext = createContext()
 
 export const ThemeProvider = ({ children }) => {
   const [activeTheme, setActiveTheme] = useState(() => localStorage.getItem("theme") || "blue")
-  const [showThemeSelector, setShowThemeSelector] = useState(false);
 
   useEffect(() => {
     const themeVars = themes[activeTheme]
@@ -17,7 +16,7 @@ export const ThemeProvider = ({ children }) => {
   }, [activeTheme])
 
   return (
-    <ThemeContext.Provider value={{ activeTheme, setActiveTheme, showThemeSelector, setShowThemeSelector }}>
+    <ThemeContext.Provider value={{ activeTheme, setActiveTheme }}>
       {children}
     </ThemeContext.Provider>
   )

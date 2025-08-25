@@ -13,3 +13,7 @@ export const getmyOrders = () => api.get(`/order/my/orders`);
 export const getOrderById = (id) => api.get(`/order/${id}`);
 
 export const createContact = (data) => api.post(`/common/contact-us`, data);
+export const subscribe = (data) => api.post('/common/subscribe', data);
+
+export const postforgotPassword = (data) => api.post('/user/password/forget/', data);
+export const resetPassword = (token, data) => api.put(`/user/password/reset/${token}`, data)

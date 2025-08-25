@@ -71,7 +71,7 @@ export const sendPasswordResetEmail = async (user, resetPasswordURL) => {
                 <div class="content">
                     <p>Hello, ${user.name}</p>
                     <p>You have requested to reset your password for your Brandify account. To reset your password, please click the button below:</p>
-                    <p><a class="button" href="/password/reset/${resetPasswordURL}">Reset Password</a></p>
+                    <p><a class="button" href="https://brandify-8mm5.onrender.com/password/reset/${resetPasswordURL}">Reset Password</a></p>
                     <p>If you did not request a password reset, please ignore this email.</p>
                 </div>
             </div>

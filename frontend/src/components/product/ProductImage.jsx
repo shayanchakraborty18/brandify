@@ -17,24 +17,10 @@ export const ProductImage = ({ product }) => {
   }
 
   return (
-    <div className="flex gap-4">
-      <div className="flex flex-col items-center space-y-4 w-[108px] max-h-[484px] overflow-y-auto">
-        {}
-        {product?.images?.map((item, index) => (
-          <div
-            className="flex justify-center h-1/4"
-            key={index}
-            onClick={() => setMainImg(item.url)}
-          >
-            <img
-              src={`${IMAGE_PATH}/${item.url}`}
-              className="w-full h-auto object-cover rounded-lg cursor-pointer hover:shadow-lg"
-            />
-          </div>
-        ))}
-      </div>
+    <div className="flex flex-col md:flex-row gap-4">
+      
 
-      <div className="flex-1 relative">
+      <div className="flex-1 md:order-2 relative">
         <img
           src={`${IMAGE_PATH}/${mainImg}`}
           alt={product.name}
@@ -50,6 +36,21 @@ export const ProductImage = ({ product }) => {
             On Sale
           </div>
         )}
+      </div>
+      <div className="flex md:order-1 md:flex-col flex-row items-center space-y-4 w-full md:w-[108px] max-h-[484px] overflow-y-auto">
+        {}
+        {product?.images?.map((item, index) => (
+          <div
+            className="flex justify-center flex-1"
+            key={index}
+            onClick={() => setMainImg(item.url)}
+          >
+            <img
+              src={`${IMAGE_PATH}/${item.url}`}
+              className="w-auto h-full object-cover rounded-lg cursor-pointer hover:shadow-lg"
+            />
+          </div>
+        ))}
       </div>
     </div>
   );
